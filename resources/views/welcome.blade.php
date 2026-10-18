@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply Now - ভারতের ভিসা প্রসেসিং সার্ভিস</title>
+    <title>Hello Apply - ভারতের ভিসা প্রসেসিং সার্ভিস</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -15,14 +15,17 @@
     <!-- Navbar -->
     <header class="bg-white/90 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <!-- Logo Section -->
             <div class="flex items-center gap-2">
-                <span class="text-2xl md:text-3xl font-black text-emerald-700 tracking-tight">Apply<span class="text-orange-500">Now</span></span>
+                <a href="#" class="flex items-center">
+                    <img src="{{ asset('Images/hello-apply.png') }}" alt="Hello Apply Logo" class="h-10 md:h-12 w-auto object-contain">
+                </a>
             </div>
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
                 <a href="#success-section" class="hover:text-emerald-600 transition">সফল ভিসাসমূহ</a>
                 <a href="#posts-section" class="hover:text-emerald-600 transition">বিশেষ পোস্ট ও আপডেট</a>
             </nav>
-            <a href="https://wa.me/8801619891494?text=Hello%20ApplyNow,%20India%20Visa%20samporke%20jante%20cai" target="_blank" 
+            <a href="https://wa.me/8801619891494?text=Hello%20Apply,%20India%20Visa%20samporke%20jante%20cai" target="_blank" 
                class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all shadow-md shadow-emerald-600/20">
                 <span>সরাসরি ইনকোয়ারি</span>
             </a>
@@ -33,7 +36,7 @@
     <section class="relative bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 text-white py-24 px-4 overflow-hidden">
         <div class="max-w-4xl mx-auto text-center relative z-10">
             <span class="inline-flex items-center gap-1.5 bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 text-xs px-4 py-1.5 rounded-full font-semibold uppercase tracking-wider mb-6">
-                <span>🇮🇳</span> Travel India with Apply Now
+                <span>🇮🇳</span> Travel India with Hello Apply
             </span>
             <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
                 সহজ, নির্ভুল ও ঝামেলামুক্ত <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">ইন্ডিয়ান ভিসা প্রসেসিং</span>
@@ -143,7 +146,7 @@
                             </div>
                             
                             <div class="mt-4 pt-3 border-t border-slate-100">
-                                <a href="https://wa.me/8801619891494?text=Hello%20ApplyNow,%20ei%20update%20somporke%20jante%20cai" target="_blank" 
+                                <a href="https://wa.me/8801619891494?text=Hello%20HelloApply,%20ei%20update%20somporke%20jante%20cai" target="_blank" 
                                    class="w-full flex items-center justify-center gap-1 bg-slate-900 hover:bg-orange-600 text-white text-[11px] font-bold py-2 px-3 rounded-xl transition">
                                     <span>বিস্তারিত</span> &rarr;
                                 </a>
@@ -162,8 +165,8 @@
     <!-- Footer -->
     <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800 text-center text-xs">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span class="text-xl font-black text-white tracking-tight">Apply<span class="text-orange-500">Now</span></span>
-            <p>&copy; {{ date('Y') }} Apply Now. সর্বস্বত্ব সংরক্ষিত।</p>
+            <img src="{{ asset('Images/hello-apply.png') }}" alt="Hello Apply Logo" class="h-10 w-auto object-contain brightness-0 invert">
+            <p>&copy; {{ date('Y') }} Hello Apply. সর্বস্বত্ব সংরক্ষিত।</p>
         </div>
     </footer>
 
