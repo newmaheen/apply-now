@@ -18,7 +18,7 @@
             <!-- Logo Section -->
             <div class="flex items-center gap-2">
                 <a href="#" class="flex items-center">
-                    <img src="{{ asset('Images/hello-apply.png') }}" alt="Hello Apply Logo" class="h-10 md:h-12 w-auto object-contain">
+                    <img src="{{ asset('Images/hello-apply.png') }}" alt="Hello Apply Logo" class="h-20 md:h-28 w-auto object-contain" style="image-rendering: -webkit-optimize-contrast;">
                 </a>
             </div>
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
