@@ -42,8 +42,11 @@ COPY .docker/nginx.conf /etc/nginx/http.d/default.conf
 
 EXPOSE 80
 
-# ৮. রানটাইমে প্যাকেজ ডিসকভারি, মাইগ্রেশন এবং সার্ভার স্টার্ট
-CMD php artisan package:discover --ansi && \
+# ৮. রানটাইমে প্রয়োজনীয় স্টোরেজ ফোল্ডার তৈরি, মাইগ্রেশন, স্টোরেজ লিংক এবং সার্ভার স্টার্ট
+CMD mkdir -p /var/www/html/storage/app/public/posts && \
+    mkdir -p /var/www/html/storage/app/public/visas && \
+    chown -R www-data:www-data /var/www/html/storage && \
+    php artisan package:discover --ansi && \
     php artisan config:cache && \
     php artisan route:cache && \
     php artisan view:cache && \
