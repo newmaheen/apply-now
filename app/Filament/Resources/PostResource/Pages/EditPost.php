@@ -6,7 +6,7 @@ use App\Filament\Resources\PostResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditRecordPage extends EditRecord // অথবা EditPost
+class EditPost extends EditRecord
 {
     protected static string $resource = PostResource::class;
 
