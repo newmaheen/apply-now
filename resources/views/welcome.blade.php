@@ -71,9 +71,9 @@
                                     @if($visa->issue_date)
                                         <p><span class="text-slate-400">ইস্যুর তারিখ:</span> {{ $visa->issue_date->format('d M, Y') }}</p>
                                     @endif
-                                    @if($visa->expiry_date)
+                                    <!-- @if($visa->expiry_date)
                                         <p><span class="text-slate-400">মেয়াদ উত্তীর্ণ:</span> {{ $visa->expiry_date->format('d M, Y') }}</p>
-                                    @endif
+                                    @endif -->
                                 </div>
                             </div>
                             <div class="mt-5 pt-4 border-t border-slate-100">
