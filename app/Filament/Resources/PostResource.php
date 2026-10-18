@@ -18,31 +18,31 @@ class PostResource extends Resource
     protected static ?string $model = Post::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
-    protected static ?string $navigationLabel = 'পোস্ট ও ফটোকার্ড';
-    protected static ?string $modelLabel = 'পোস্ট';
+    protected static ?string $navigationLabel = 'Posts';
+    protected static ?string $modelLabel = 'Posts';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
-                    ->label('শিরোনাম / ক্যাপশন')
+                    ->label('Title')
                     ->required()
                     ->maxLength(255),
 
                 Forms\Components\TextInput::make('category')
-                    ->label('ক্যাটাগরি (যেমন: নোটিশ, আপডেট)')
+                    ->label('Category')
                     ->maxLength(255),
 
                 Forms\Components\FileUpload::make('image_path')
-                    ->label('ফটোকার্ড (Portrait Image)')
+                    ->label('Photocard')
                     ->image()
                     ->directory('posts')
                     ->maxSize(10240) // ১০ মেগাবাইট পর্যন্ত
                     ->required(),
 
                 Forms\Components\Toggle::make('is_active')
-                    ->label('সক্রিয় (Active)')
+                    ->label('Active')
                     ->default(true),
             ]);
     }
@@ -52,18 +52,18 @@ class PostResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image_path')
-                    ->label('ছবি')
+                    ->label('Image')
                     ->circular(),
                 Tables\Columns\TextColumn::make('title')
-                    ->label('শিরোনাম')
+                    ->label('Title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('category')
-                    ->label('ক্যাটাগরি'),
+                    ->label('Category'),
                 Tables\Columns\IconColumn::make('is_active')
-                    ->label('স্ট্যাটাস')
+                    ->label('Status')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('তৈরির তারিখ')
+                    ->label('Created At')
                     ->date(),
             ])
             ->filters([
