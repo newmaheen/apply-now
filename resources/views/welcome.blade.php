@@ -8,14 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Hind Siliguri', sans-serif; }
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
+        
+        /* Hide scrollbar for clean carousel */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Glowing Pulse Animation for 10 Years Experience Badge */
+        @keyframes glowing-badge {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+        .animate-glow {
+            animation: glowing-badge 2s infinite;
         }
     </style>
 </head>
@@ -24,7 +29,7 @@
     <!-- Navbar -->
     <header class="bg-white/90 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between">
-            <!-- Logo Section (Boro kora hoyeche) -->
+            <!-- Logo Section -->
             <div class="flex items-center gap-2">
                 <a href="#" class="flex items-center">
                     <img src="{{ asset('Images/hello-apply.png') }}" alt="Hello Apply Logo" class="h-24 md:h-32 w-auto object-contain" style="image-rendering: -webkit-optimize-contrast;">
@@ -41,12 +46,15 @@
         </div>
     </header>
 
-    <!-- Travel India Hero Banner (10 Years Experience Added) -->
+    <!-- Travel India Hero Banner (Prominent 10 Years Experience Badge with Animation) -->
     <section class="relative bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 text-white py-24 px-4 overflow-hidden">
         <div class="max-w-4xl mx-auto text-center relative z-10">
-            <span class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 text-xs md:text-sm px-4 py-2 rounded-full font-semibold uppercase tracking-wider mb-6 shadow-lg">
-                <span>🌟</span> আমাদের রয়েছে ১০ বছরের ভারতীয় ভিসা প্রসেসিং অভিজ্ঞতা
-            </span>
+            
+            <!-- Highly Prominent Animated Experience Badge -->
+            <div class="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-600 to-teal-500 text-white border border-emerald-400/30 text-xs sm:text-sm px-5 py-2.5 rounded-full font-bold uppercase tracking-wider mb-8 shadow-2xl animate-glow">
+                <span class="text-base">🏆</span> 
+                <span>১০ বছরের ভারতীয় ভিসা প্রসেসিং সফল অভিজ্ঞতা!</span>
+            </div>
 
             <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
                 সহজ, নির্ভুল ও ঝামেলামুক্ত <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">ইন্ডিয়ান ভিসা প্রসেসিং</span>
@@ -65,7 +73,7 @@
         </div>
     </section>
 
-    <!-- 1. Visa Success Section with AJAX Pagination (Mobile Friendly) -->
+    <!-- 1. Visa Success Section with Instant AJAX Pagination -->
     <section id="success-section" class="py-20 px-4 max-w-7xl mx-auto">
         <div class="text-center mb-14">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">সম্প্রতি প্রাপ্ত সফল ভিসাসমূহ</h2>
@@ -135,7 +143,7 @@
         @endif
     </section>
 
-    <!-- Footer (Boro Logo added) -->
+    <!-- Footer -->
     <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-center text-xs">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-6">
             <img src="{{ asset('Images/hello-apply.png') }}" alt="Hello Apply Logo" class="h-16 w-auto object-contain brightness-0 invert">
@@ -143,12 +151,12 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Carousel & AJAX Pagination -->
+    <!-- JavaScript for Carousel & Instant AJAX Pagination -->
     <script>
         // Carousel Scroll Function
         function scrollPosts(direction) {
             const container = document.getElementById('posts-carousel');
-            const scrollAmount = 320; // Card width + gap
+            const scrollAmount = 320; 
             if (direction === 'left') {
                 container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
             } else {
@@ -156,12 +164,17 @@
             }
         }
 
-        // AJAX Pagination for Visa Success cards
+        // Instant AJAX Pagination for Visa Success cards
         document.addEventListener('click', function(e) {
-            if (e.target.closest('#visa-success-container .pagination a')) {
+            let paginationLink = e.target.closest('#visa-success-container nav a, #visa-success-container .pagination-links a');
+            
+            if (paginationLink) {
                 e.preventDefault();
-                let url = e.target.closest('a').href;
+                let url = paginationLink.href;
                 
+                let container = document.getElementById('visa-success-container');
+                container.style.opacity = '0.4';
+
                 fetch(url, {
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest'
@@ -169,17 +182,19 @@
                 })
                 .then(response => response.text())
                 .then(html => {
-                    // Create a temporary element to parse the response
                     let parser = new DOMParser();
                     let doc = parser.parseFromString(html, 'text/html');
-                    let newContainer = doc.getElementById('visa-success-container').innerHTML;
+                    let newContent = doc.getElementById('visa-success-container').innerHTML;
                     
-                    document.getElementById('visa-success-container').innerHTML = newContainer;
+                    container.innerHTML = newContent;
+                    container.style.opacity = '1';
                     
-                    // Smooth scroll back to top of the success section
-                    document.getElementById('success-section').scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById('success-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => {
+                    console.error('Error:', error);
+                    container.style.opacity = '1';
+                });
             }
         });
     </script>

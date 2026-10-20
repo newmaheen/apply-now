@@ -40,8 +40,10 @@
 
     <!-- Pagination -->
     @if(method_exists($visaSuccesses, 'links'))
-        <div class="mt-12">
-            {{ $visaSuccesses->links() }}
+        <div class="mt-12 flex justify-center">
+            <div class="inline-flex rounded-xl shadow-sm bg-white border border-slate-200 p-1.5 gap-1 pagination-links">
+                {{ $visaSuccesses->onEachSide(1)->links('pagination::simple-tailwind') }}
+            </div>
         </div>
     @endif
 @else
