@@ -20,7 +20,6 @@
         }
         .animate-glow { animation: glowing-badge 2s infinite; }
 
-        /* Butter-smooth Infinite Marquee Animation for Visa & Posts */
         @keyframes smoothScroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -75,7 +74,7 @@
         </div>
     </header>
 
-    <!-- Hero Banner with Rich Premium Backdrop -->
+    <!-- Hero Banner -->
     <section class="relative bg-gradient-to-br from-slate-950 via-emerald-950 to-slate-900 text-white py-20 sm:py-28 px-4 overflow-hidden border-b border-emerald-900/40">
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-900/20 via-transparent to-transparent pointer-events-none"></div>
         <div class="max-w-4xl mx-auto text-center relative z-10">
@@ -103,7 +102,7 @@
         </div>
     </section>
 
-    <!-- 1. Visa Success Section (Smooth Marquee Auto-sliding) -->
+    <!-- 1. Visa Success Section (Hybrid: 2-Row Grid, Auto-slide timer + Manual Navigation Buttons) -->
     <section id="success-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto overflow-hidden">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 sm:mb-14 px-2 gap-4">
             <div>
@@ -112,10 +111,10 @@
             </div>
             <!-- Manual Navigation Buttons -->
             <div class="flex items-center gap-3">
-                <button onclick="scrollSection('visa-carousel', 'left')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition">
+                <button onclick="scrollGrid('visa-grid-container', 'left')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition cursor-pointer">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
                 </button>
-                <button onclick="scrollSection('visa-carousel', 'right')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition">
+                <button onclick="scrollGrid('visa-grid-container', 'right')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition cursor-pointer">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                 </button>
             </div>
@@ -126,7 +125,7 @@
         </div>
     </section>
 
-    <!-- 2. Portrait Posts Section (Butter-Smooth Infinite Marquee Animation) -->
+    <!-- 2. Portrait Posts Section -->
     <section id="posts-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto bg-slate-100/70 rounded-[2.5rem] my-8 sm:my-16 border border-slate-200/60 shadow-inner overflow-hidden relative">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 sm:mb-14 px-2 gap-4">
             <div>
@@ -135,12 +134,11 @@
                 </span>
                 <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3" data-bn="আমাদের পোর্ট্রেইট পোস্ট ও ছবিসমূহ" data-en="Our Portrait Posts & Photos">আমাদের পোর্ট্রেইট পোস্ট ও ছবিসমূহ</h2>
             </div>
-            <!-- Manual Navigation Buttons -->
             <div class="flex items-center gap-3">
-                <button onclick="scrollSection('posts-carousel', 'left')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-orange-600 hover:text-white transition">
+                <button onclick="scrollGrid('posts-carousel', 'left')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-orange-600 hover:text-white transition cursor-pointer">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
                 </button>
-                <button onclick="scrollSection('posts-carousel', 'right')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-orange-600 hover:text-white transition">
+                <button onclick="scrollGrid('posts-carousel', 'right')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-orange-600 hover:text-white transition cursor-pointer">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                 </button>
             </div>
@@ -181,7 +179,7 @@
                         </div>
                     @endforeach
 
-                    <!-- Duplicate items for seamless infinite marquee loop -->
+                    <!-- Duplicate items for seamless loop -->
                     @foreach($posts as $post)
                         <div class="w-[240px] sm:w-[280px] flex-shrink-0 bg-white rounded-3xl border border-slate-200/85 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group">
                             <div class="relative bg-slate-950 aspect-[3/4] flex items-center justify-center overflow-hidden">
@@ -227,7 +225,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Language Toggle, Manual Scroll & AJAX Pagination -->
+    <!-- JavaScript for Language Toggle, Auto-Slide Timer + Manual Scroll & AJAX Pagination -->
     <script>
         function switchLanguage(lang) {
             const htmlTag = document.getElementById('html-root');
@@ -268,12 +266,26 @@
             if (savedLang === 'en') {
                 switchLanguage('en');
             }
+
+            // AUTO-SLIDE TIMER FOR VISA GRID (Every 2 seconds)
+            const visaGrid = document.getElementById('visa-grid-container');
+            if (visaGrid) {
+                let visaInterval = setInterval(() => {
+                    if (visaGrid.scrollLeft + visaGrid.clientWidth >= visaGrid.scrollWidth - 10) {
+                        visaGrid.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        visaGrid.scrollBy({ left: 360, behavior: 'smooth' });
+                    }
+                }, 2500);
+
+                visaGrid.addEventListener('mouseenter', () => clearInterval(visaInterval));
+            }
         });
 
-        function scrollSection(containerId, direction) {
+        function scrollGrid(containerId, direction) {
             const container = document.getElementById(containerId);
             if (!container) return;
-            const scrollAmount = 320;
+            const scrollAmount = 360;
             if (direction === 'left') {
                 container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
             } else {

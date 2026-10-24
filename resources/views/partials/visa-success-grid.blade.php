@@ -1,13 +1,11 @@
 @if(isset($visaSuccesses) && $visaSuccesses->count() > 0)
-    <!-- Visa Success Infinite Marquee Container -->
-    <div class="w-full overflow-hidden relative py-4">
-        <div class="absolute left-0 inset-y-0 w-16 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
-        <div class="absolute right-0 inset-y-0 w-16 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
-
-        <div id="visa-carousel" class="animate-marquee flex gap-6">
+    <!-- Visa Success 2-Row Grid Container with Horizontal Scroll & Auto-Slide Support -->
+    <div class="w-full overflow-x-auto no-scrollbar scroll-smooth pb-4" id="visa-grid-container">
+        <!-- 2 Rows Grid Layout -->
+        <div class="grid grid-rows-2 grid-flow-col gap-4 sm:gap-6 min-w-max px-1">
             
             <!-- 1. SPECIAL PROMO FIRST CARD -->
-            <div class="w-[280px] sm:w-[360px] flex-shrink-0 bg-gradient-to-br from-emerald-950 via-slate-900 to-emerald-900 rounded-3xl border-2 border-emerald-500/50 shadow-2xl shadow-emerald-950/30 p-5 sm:p-8 flex flex-col justify-between text-white relative overflow-hidden group">
+            <div class="row-span-2 w-[280px] sm:w-[360px] bg-gradient-to-br from-emerald-950 via-slate-900 to-emerald-900 rounded-3xl border-2 border-emerald-500/50 shadow-2xl shadow-emerald-950/30 p-5 sm:p-8 flex flex-col justify-between text-white relative overflow-hidden group">
                 <div class="absolute -right-10 -bottom-10 w-36 h-36 bg-emerald-500/20 rounded-full blur-3xl group-hover:bg-emerald-500/30 transition-all"></div>
                 <div>
                     <span class="inline-block bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] sm:text-xs font-bold px-3.5 py-1 rounded-full mb-4" data-bn="✨ পরবর্তী সুযোগ" data-en="✨ Next Opportunity">
@@ -28,92 +26,48 @@
 
             <!-- 2. DYNAMIC PREMIUM VISA SUCCESS CARDS -->
             @foreach($visaSuccesses as $visa)
-                <div class="w-[280px] sm:w-[360px] flex-shrink-0 bg-white rounded-3xl border-2 border-emerald-500/20 shadow-xl shadow-emerald-950/5 hover:shadow-2xl hover:border-emerald-500/50 transition-all duration-300 overflow-hidden flex flex-col group relative">
+                <div class="row-span-1 w-[280px] sm:w-[360px] bg-white rounded-3xl border-2 border-emerald-500/20 shadow-xl shadow-emerald-950/5 hover:shadow-2xl hover:border-emerald-500/50 transition-all duration-300 overflow-hidden flex flex-col group relative">
                     <!-- Glowing Emerald Accent Top Bar -->
-                    <div class="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600"></div>
+                    <div class="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600"></div>
 
-                    <!-- Landscape Image Box with Glossy Container -->
-                    <div class="relative bg-slate-950 aspect-[16/10] w-full flex items-center justify-center overflow-hidden border-b border-emerald-100">
-                        <img src="{{ asset('storage/' . $visa->image_path) }}" alt="Visa Record" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        
-                        <!-- Premium Approved Badge -->
-                        <div class="absolute top-3 right-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-[10px] sm:text-xs font-black px-3.5 py-1 rounded-full shadow-2xl border border-emerald-300/40 flex items-center gap-1 animate-pulse">
-                            <span>✓</span> Approved
-                        </div>
-                    </div>
-                    
-                    <!-- Details Body -->
-                    <div class="p-4 sm:p-6 flex-1 flex flex-col justify-between bg-gradient-to-b from-white via-emerald-50/30 to-white">
-                        <div>
-                            <h3 class="font-extrabold text-slate-900 text-sm sm:text-base mb-3 leading-snug line-clamp-2 group-hover:text-emerald-800 transition-colors">
-                                {{ $visa->title ?? 'Indian Visa Approved' }}
-                            </h3>
-                            
-                            <div class="space-y-2 text-xs text-slate-700 mb-4 sm:mb-6 bg-white p-3.5 rounded-2xl border border-emerald-500/20 shadow-inner">
-                                @if($visa->route)
-                                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-2">
-                                        <span class="text-slate-400 font-semibold shrink-0" data-bn="অনুমোদিত রুট:" data-en="Approved Route:">অনুমোদিত রুট:</span>
-                                        <strong class="text-emerald-950 sm:text-right truncate font-bold">{{ $visa->route }}</strong>
-                                    </div>
-                                @endif
-                                @if($visa->issue_date)
-                                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center border-t border-slate-100 pt-1.5">
-                                        <span class="text-slate-400 font-semibold" data-bn="তারিখ:" data-en="Date:">তারিখ:</span>
-                                        <span class="font-bold text-slate-800">{{ $visa->issue_date->format('d M, Y') }}</span>
-                                    </div>
-                                @endif
+                    <div class="flex items-center gap-3 p-3.5 bg-gradient-to-b from-white to-emerald-50/20">
+                        <!-- Landscape Image Thumbnail -->
+                        <div class="relative bg-slate-950 w-24 h-16 rounded-xl overflow-hidden flex-shrink-0 border border-emerald-100">
+                            <img src="{{ asset('storage/' . $visa->image_path) }}" alt="Visa Record" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute bottom-0.5 right-0.5 bg-emerald-600 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-md">
+                                ✓
                             </div>
                         </div>
                         
-                        <!-- Action Button -->
-                        <a href="https://wa.me/8801619891494?text=Ami%20India%20Visa%20korbo" target="_blank" 
-                           class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 hover:from-emerald-600 hover:to-teal-600 text-white text-xs font-extrabold py-3 px-4 rounded-xl transition-all shadow-lg shadow-emerald-950/20">
-                            <span data-bn="ইনকোয়ারি করুন" data-en="Inquire Now">ইনকোয়ারি করুন</span> &rarr;
-                        </a>
-                    </div>
-                </div>
-            @endforeach
-
-            <!-- Duplicate items for seamless infinite marquee loop -->
-            @foreach($visaSuccesses as $visa)
-                <div class="w-[280px] sm:w-[360px] flex-shrink-0 bg-white rounded-3xl border-2 border-emerald-500/20 shadow-xl shadow-emerald-950/5 hover:shadow-2xl hover:border-emerald-500/50 transition-all duration-300 overflow-hidden flex flex-col group relative">
-                    <div class="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600"></div>
-                    <div class="relative bg-slate-950 aspect-[16/10] w-full flex items-center justify-center overflow-hidden border-b border-emerald-100">
-                        <img src="{{ asset('storage/' . $visa->image_path) }}" alt="Visa Record" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute top-3 right-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-[10px] sm:text-xs font-black px-3.5 py-1 rounded-full shadow-2xl border border-emerald-300/40 flex items-center gap-1 animate-pulse">
-                            <span>✓</span> Approved
-                        </div>
-                    </div>
-                    <div class="p-4 sm:p-6 flex-1 flex flex-col justify-between bg-gradient-to-b from-white via-emerald-50/30 to-white">
-                        <div>
-                            <h3 class="font-extrabold text-slate-900 text-sm sm:text-base mb-3 leading-snug line-clamp-2 group-hover:text-emerald-800 transition-colors">
+                        <!-- Details Body (Compact for 2-row layout) -->
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-extrabold text-slate-900 text-xs sm:text-sm truncate group-hover:text-emerald-800 transition-colors">
                                 {{ $visa->title ?? 'Indian Visa Approved' }}
                             </h3>
-                            <div class="space-y-2 text-xs text-slate-700 mb-4 sm:mb-6 bg-white p-3.5 rounded-2xl border border-emerald-500/20 shadow-inner">
+                            <div class="text-[11px] text-slate-600 mt-1 space-y-0.5">
                                 @if($visa->route)
-                                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-2">
-                                        <span class="text-slate-400 font-semibold shrink-0" data-bn="অনুমোদিত রুট:" data-en="Approved Route:">অনুমোদিত রুট:</span>
-                                        <strong class="text-emerald-950 sm:text-right truncate font-bold">{{ $visa->route }}</strong>
-                                    </div>
+                                    <p class="truncate"><span class="text-slate-400" data-bn="রুট:" data-en="Route:">রুট:</span> <strong class="text-emerald-950">{{ $visa->route }}</strong></p>
                                 @endif
                                 @if($visa->issue_date)
-                                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center border-t border-slate-100 pt-1.5">
-                                        <span class="text-slate-400 font-semibold" data-bn="তারিখ:" data-en="Date:">তারিখ:</span>
-                                        <span class="font-bold text-slate-800">{{ $visa->issue_date->format('d M, Y') }}</span>
-                                    </div>
+                                    <p><span class="text-slate-400" data-bn="তারিখ:" data-en="Date:">তারিখ:</span> {{ $visa->issue_date->format('d M, Y') }}</p>
                                 @endif
                             </div>
                         </div>
-                        <a href="https://wa.me/8801619891494?text=Ami%20India%20Visa%20korbo" target="_blank" 
-                           class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 hover:from-emerald-600 hover:to-teal-600 text-white text-xs font-extrabold py-3 px-4 rounded-xl transition-all shadow-lg shadow-emerald-950/20">
-                            <span data-bn="ইনকোয়ারি করুন" data-en="Inquire Now">ইনকোয়ারি করুন</span> &rarr;
-                        </a>
                     </div>
                 </div>
             @endforeach
 
         </div>
     </div>
+
+    <!-- Pagination -->
+    @if(method_exists($visaSuccesses, 'links'))
+        <div class="mt-8 sm:mt-10 flex justify-center overflow-x-auto py-2">
+            <div class="inline-flex rounded-xl shadow-sm bg-white border border-slate-200 p-1.5 gap-1 pagination-links">
+                {{ $visaSuccesses->onEachSide(1)->links('pagination::simple-tailwind') }}
+            </div>
+        </div>
+    @endif
 @else
     <div class="text-center py-16 bg-white rounded-3xl border border-dashed border-slate-200">
         <p class="text-slate-500 text-sm" data-bn="এখনো কোনো ভিসা কার্ড যুক্ত করা হয়নি।" data-en="No visa cards have been added yet.">এখনো কোনো ভিসা কার্ড যুক্ত করা হয়নি।</p>
