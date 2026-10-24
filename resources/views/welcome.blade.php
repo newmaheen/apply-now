@@ -101,7 +101,7 @@
         </div>
     </section>
 
-    <!-- 1. Visa Success Section (Clean 6-Card Grid: Promo + 5 Visa Cards per page) -->
+    <!-- 1. Visa Success Section -->
     <section id="success-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 sm:mb-14 px-2 gap-4">
             <div>
@@ -109,10 +109,8 @@
                 <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-3" data-bn="সম্প্রতি প্রাপ্ত সফল ভিসাসমূহ" data-en="Recently Approved Visas">সম্প্রতি প্রাপ্ত সফল ভিসাসমূহ</h2>
             </div>
             
-            <!-- Centered Header Navigation Buttons (Functional AJAX Pagination triggers) -->
-            <div id="top-pagination-nav" class="flex items-center gap-3">
-                <!-- Buttons will be synced with pagination links -->
-            </div>
+            <!-- Top Nav Next/Prev Buttons -->
+            <div id="top-pagination-nav" class="flex items-center gap-3"></div>
         </div>
 
         <div id="visa-success-container">
@@ -219,7 +217,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Language Toggle, Functional AJAX Pagination & Sync -->
+    <!-- JavaScript for Language Toggle & Fully Functional AJAX Pagination -->
     <script>
         function switchLanguage(lang) {
             const htmlTag = document.getElementById('html-root');
@@ -282,13 +280,9 @@
             if (!topNav) return;
 
             let html = '';
-            // If prev exists
-            if (document.querySelector('#visa-success-container .pagination-links span[aria-disabled="true"]') || prevLink) {
-                // We build clean top arrows
-                html += `<button onclick="triggerPageAction('prev')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition cursor-pointer flex items-center justify-center">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                </button>`;
-            }
+            html += `<button onclick="triggerPageAction('prev')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition cursor-pointer flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>`;
             html += `<button onclick="triggerPageAction('next')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition cursor-pointer flex items-center justify-center">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
             </button>`;
@@ -336,7 +330,6 @@
             });
         }
 
-        // AJAX Pagination handler for clicked links inside pagination
         document.addEventListener('click', function(e) {
             let paginationLink = e.target.closest('#visa-success-container nav a, #visa-success-container .pagination-links a');
             if (paginationLink && paginationLink.href) {

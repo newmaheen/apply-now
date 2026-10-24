@@ -22,7 +22,7 @@
             </a>
         </div>
 
-        <!-- 2. DYNAMIC LARGE VISA SUCCESS CARDS (Taking up to 5 items to keep total 6 cards per page) -->
+        <!-- 2. DYNAMIC LARGE VISA SUCCESS CARDS -->
         @foreach($visaSuccesses->take(5) as $visa)
             <div class="bg-white rounded-3xl border-2 border-emerald-500/20 shadow-xl shadow-emerald-950/5 hover:shadow-2xl hover:border-emerald-500/50 transition-all duration-300 overflow-hidden flex flex-col group relative">
                 <!-- Glowing Emerald Accent Top Bar -->
@@ -34,13 +34,13 @@
                         @if(isset($visa->client_photo) && $visa->client_photo)
                             <img src="{{ asset('storage/' . $visa->client_photo) }}" alt="Client" class="w-full h-full object-cover">
                         @else
-                            {{ mb_substr($visa->client_name ?? 'C', 0, 1) }}
+                            {{ mb_substr($visa->title ?? 'I', 0, 1) }}
                         @endif
                     </div>
                     <div>
-                        <h4 class="font-bold text-slate-900 text-base leading-tight">{{ $visa->client_name ?? ($visa->title ?? 'Visa Success') }}</h4>
+                        <h4 class="font-bold text-slate-900 text-base leading-tight">{{ $visa->title ?? 'Indian Visit' }}</h4>
                         <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 inline-block mt-1">
-                            {{ $visa->destination_country ?? 'Approved' }}
+                            Approved
                         </span>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
         @endforeach
     </div>
 
-    <!-- Pagination & Bottom Nav -->
+    <!-- Pagination -->
     @if(method_exists($visaSuccesses, 'links'))
         <div class="mt-10 sm:mt-14 flex justify-center overflow-x-auto py-2">
             <div class="inline-flex rounded-xl shadow-sm bg-white border border-slate-200 p-1.5 gap-1 pagination-links">
