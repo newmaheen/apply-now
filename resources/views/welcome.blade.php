@@ -100,7 +100,7 @@
         </div>
     </section>
 
-    <!-- 2. Portrait Posts Carousel Section -->
+    <!-- 2. Portrait Posts Carousel Section (Auto-scrolling + Manual buttons) -->
     <section id="posts-section" class="py-14 sm:py-20 px-4 max-w-7xl mx-auto bg-slate-100/60 rounded-3xl my-8 sm:my-12 border border-slate-200/50">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 sm:mb-10 px-2 gap-4">
             <div>
@@ -150,7 +150,7 @@
                     </div>
                 @endforeach
             </div>
-            <p class="text-center text-[11px] text-slate-400 mt-2 sm:hidden" data-bn="← ডানে-বামে স্ক্রোল করে আরও দেখুন →" data-en="← Scroll left & right for more →">← ডানে-বামে স্ক্রোল করে আরও দেখুন →</p>
+            <p class="text-center text-[11px] text-slate-400 mt-2 sm:hidden" data-bn="← ডানে-বামে স্ক্রোল করুন →" data-en="← Swipe left & right →">← ডানে-বামে স্ক্রোল করুন →</p>
         @else
             <div class="text-center py-10 bg-white rounded-2xl border border-dashed border-slate-300">
                 <p class="text-slate-500 text-sm" data-bn="কোনো পোর্ট্রেইট পোস্ট পাওয়া যায়নি।" data-en="No portrait posts found.">কোনো পোর্ট্রেইট পোস্ট পাওয়া যায়নি।</p>
@@ -166,7 +166,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Language Toggle, Carousel & AJAX Pagination -->
+    <!-- JavaScript for Language Toggle, Auto-Carousel & AJAX Pagination -->
     <script>
         function switchLanguage(lang) {
             const htmlTag = document.getElementById('html-root');
@@ -188,7 +188,6 @@
                 btnEn.className = "px-3 py-1 rounded-full text-[11px] font-bold transition-all text-slate-400 hover:text-white";
             }
 
-            // Translate elements with data-bn and data-en
             document.querySelectorAll('[data-bn]').forEach(el => {
                 const text = el.getAttribute(`data-${lang}`);
                 if (text) {
@@ -203,17 +202,30 @@
             localStorage.setItem('hello_apply_lang', lang);
         }
 
-        // Check saved language on load
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('hello_apply_lang') || 'bn';
             if (savedLang === 'en') {
                 switchLanguage('en');
             }
+
+            // AUTO-SCROLLING FOR POSTS CAROUSEL
+            const carousel = document.getElementById('posts-carousel');
+            if (carousel) {
+                let autoScrollInterval = setInterval(() => {
+                    if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10) {
+                        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        carousel.scrollBy({ left: 300, behavior: 'smooth' });
+                    }
+                }, 3500);
+
+                carousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+            }
         });
 
         function scrollPosts(direction) {
             const container = document.getElementById('posts-carousel');
-            const scrollAmount = 280; 
+            const scrollAmount = 300; 
             if (direction === 'left') {
                 container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
             } else {
@@ -246,7 +258,6 @@
                     container.innerHTML = newContent;
                     container.style.opacity = '1';
                     
-                    // Maintain current language after pagination load
                     const currentLang = document.getElementById('html-root').getAttribute('lang') || 'bn';
                     if (currentLang === 'en') {
                         switchLanguage('en');

@@ -1,8 +1,8 @@
 @if(isset($visaSuccesses) && $visaSuccesses->count() > 0)
-    <!-- Mind-blowing Visa Success Grid: Mobile-এ 2 columns, Desktop-এ 3 columns -->
+    <!-- Mind-blowing Visa Success Grid: PC-তে প্রমোশনাল কার্ড সহ মোট ৬টি কার্ড, মোবাইল ২ কলাম -->
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
         
-        <!-- SPECIAL FIRST CARD: পরবর্তী ভিসার সাফল্য আপনার জন্য -->
+        <!-- 1. SPECIAL PROMO FIRST CARD -->
         <div class="bg-gradient-to-br from-emerald-950 via-slate-900 to-emerald-900 rounded-2xl sm:rounded-3xl border-2 border-emerald-500/50 shadow-xl shadow-emerald-950/20 p-4 sm:p-7 flex flex-col justify-between text-white relative overflow-hidden group">
             <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-emerald-500/20 rounded-full blur-2xl group-hover:bg-emerald-500/30 transition-all"></div>
             <div>
@@ -22,37 +22,40 @@
             </a>
         </div>
 
-        <!-- DYNAMIC VISA SUCCESS CARDS FROM DATABASE -->
-        @foreach($visaSuccesses as $visa)
-            <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-md sm:shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group">
+        <!-- 2. DYNAMIC VISA SUCCESS CARDS (Up to 5 items to complete total 6 cards in PC view grid) -->
+        @foreach($visaSuccesses->take(5) as $visa)
+            <div class="bg-white rounded-2xl sm:rounded-3xl border border-emerald-100/80 shadow-md sm:shadow-xl hover:shadow-2xl hover:border-emerald-500/40 transition-all duration-300 overflow-hidden flex flex-col group relative">
+                <!-- Glowing Emerald Accent Top Bar -->
+                <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
                 <!-- Landscape Image Box (Perfect Auto Fit) -->
                 <div class="relative bg-slate-900 aspect-[16/10] w-full flex items-center justify-center overflow-hidden">
                     <img src="{{ asset('storage/' . $visa->image_path) }}" alt="Visa Record" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <span class="absolute top-2 right-2 sm:top-3 sm:right-3 bg-emerald-600 text-white text-[9px] sm:text-[11px] font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg">Approved ✓</span>
+                    <span class="absolute top-2 right-2 sm:top-3 sm:right-3 bg-emerald-600 text-white text-[9px] sm:text-[11px] font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg border border-emerald-400/30">Approved ✓</span>
                 </div>
                 
                 <!-- Details -->
                 <div class="p-3 sm:p-6 flex-1 flex flex-col justify-between bg-white">
                     <div>
                         <h3 class="font-bold text-slate-900 text-xs sm:text-base mb-2 sm:mb-3 leading-snug line-clamp-2">{{ $visa->title ?? 'Indian Visa Approved' }}</h3>
-                        <div class="space-y-1 text-[10px] sm:text-xs text-slate-600 mb-3 sm:mb-4 bg-slate-50 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-slate-100">
+                        <div class="space-y-1 text-[10px] sm:text-xs text-slate-600 mb-3 sm:mb-4 bg-emerald-50/50 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-emerald-100/60">
                             @if($visa->route)
                                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-0.5 sm:gap-2">
-                                    <span class="text-slate-400 shrink-0" data-bn="অনুমোদিত রুট:" data-en="Approved Route:">অনুমোদিত রুট:</span>
-                                    <strong class="text-slate-800 sm:text-right truncate">{{ $visa->route }}</strong>
+                                    <span class="text-slate-500 shrink-0 font-medium" data-bn="অনুমোদিত রুট:" data-en="Approved Route:">অনুমোদিত রুট:</span>
+                                    <strong class="text-emerald-900 sm:text-right truncate">{{ $visa->route }}</strong>
                                 </div>
                             @endif
                             @if($visa->issue_date)
                                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center">
-                                    <span class="text-slate-400" data-bn="তারিখ:" data-en="Date:">তারিখ:</span>
-                                    <span class="font-medium text-slate-700">{{ $visa->issue_date->format('d M, Y') }}</span>
+                                    <span class="text-slate-500 font-medium" data-bn="তারিখ:" data-en="Date:">তারিখ:</span>
+                                    <span class="font-semibold text-slate-700">{{ $visa->issue_date->format('d M, Y') }}</span>
                                 </div>
                             @endif
                         </div>
                     </div>
                     
                     <a href="https://wa.me/8801619891494?text=Ami%20India%20Visa%20korbo" target="_blank" 
-                       class="w-full flex items-center justify-center gap-1 bg-slate-900 hover:bg-emerald-600 text-white text-[10px] sm:text-xs font-bold py-2 sm:py-2.5 px-2 sm:px-4 rounded-xl transition-all shadow-sm">
+                       class="w-full flex items-center justify-center gap-1.5 bg-gradient-to-r from-slate-900 to-emerald-950 hover:from-emerald-600 hover:to-emerald-700 text-white text-[10px] sm:text-xs font-bold py-2 sm:py-2.5 px-2 sm:px-4 rounded-xl transition-all shadow-md">
                         <span data-bn="ইনকোয়ারি করুন" data-en="Inquire Now">ইনকোয়ারি করুন</span> &rarr;
                     </a>
                 </div>
