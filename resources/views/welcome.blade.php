@@ -32,6 +32,28 @@
         .animate-marquee:hover {
             animation-play-state: paused;
         }
+
+        /* JS Animated Attraction Card Glow Effect */
+        .attraction-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+        .attraction-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(4, 120, 87, 0.5);
+        }
+        .card-glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.35) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+            z-index: 1;
+        }
     </style>
 </head>
 <body class="font-bn bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white transition-all duration-300" id="body-tag">
@@ -101,16 +123,12 @@
         </div>
     </section>
 
-    <!-- 1. Visa Success Section -->
+    <!-- 1. Visa Success Section (Centered Headers) -->
     <section id="success-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 sm:mb-14 px-2 gap-4">
-            <div>
-                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-emerald-200" data-bn="ভিসা অ্যাপ্রুভাল রেকর্ড" data-en="Visa Approval Records">ভিসা অ্যাপ্রুভাল রেকর্ড</span>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-3" data-bn="সম্প্রতি প্রাপ্ত সফল ভিসাসমূহ" data-en="Recently Approved Visas">সম্প্রতি প্রাপ্ত সফল ভিসাসমূহ</h2>
-            </div>
-            
-            <!-- Top Nav Next/Prev Buttons -->
-            <div id="top-pagination-nav" class="flex items-center gap-3"></div>
+        <div class="text-center mb-12 sm:mb-16">
+            <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-emerald-200" data-bn="ভিসা অ্যাপ্রুভাল রেকর্ড" data-en="Visa Approval Records">ভিসা অ্যাপ্রুভাল রেকর্ড</span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-3" data-bn="সম্প্রতি প্রাপ্ত সফল ভিসাসমূহ" data-en="Recently Approved Visas">সম্প্রতি প্রাপ্ত সফল ভিসাসমূহ</h2>
+            <p class="text-slate-500 mt-2 sm:mt-3 text-xs sm:text-base max-w-xl mx-auto" data-bn="আমাদের মাধ্যমে সফলভাবে ভিসা প্রাপ্ত সম্মানিত গ্রাহকদের কিছু রেকর্ড" data-en="Some records of our honored clients who successfully received visas through us">আমাদের মাধ্যমে সফলভাবে ভিসা প্রাপ্ত সম্মানিত গ্রাহকদের কিছু রেকর্ড</p>
         </div>
 
         <div id="visa-success-container">
@@ -118,23 +136,14 @@
         </div>
     </section>
 
-    <!-- 2. Portrait Posts Section -->
+    <!-- 2. Portrait Posts Section (Centered Headers) -->
     <section id="posts-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto bg-slate-100/70 rounded-[2.5rem] my-8 sm:my-16 border border-slate-200/60 shadow-inner overflow-hidden relative">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 sm:mb-14 px-2 gap-4">
-            <div>
-                <span class="bg-orange-500/10 text-orange-600 border border-orange-500/20 text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-wider" data-bn="বিশেষ গ্যালারি ও আপডেট" data-en="Special Gallery & Updates">
-                    বিশেষ গ্যালারি ও আপডেট
-                </span>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3" data-bn="আমাদের পোর্ট্রেইট পোস্ট ও ছবিসমূহ" data-en="Our Portrait Posts & Photos">আমাদের পোর্ট্রেইট পোস্ট ও ছবিসমূহ</h2>
-            </div>
-            <div class="flex items-center gap-3">
-                <button onclick="scrollGrid('posts-carousel', 'left')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-orange-600 hover:text-white transition cursor-pointer">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                </button>
-                <button onclick="scrollGrid('posts-carousel', 'right')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-orange-600 hover:text-white transition cursor-pointer">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-                </button>
-            </div>
+        <div class="text-center mb-12">
+            <span class="bg-orange-500/10 text-orange-600 border border-orange-500/20 text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-wider" data-bn="বিশেষ গ্যালারি ও আপডেট" data-en="Special Gallery & Updates">
+                বিশেষ গ্যালারি ও আপডেট
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3" data-bn="আমাদের পোর্ট্রেইট পোস্ট ও ছবিসমূহ" data-en="Our Portrait Posts & Photos">আমাদের পোর্ট্রেইট পোস্ট ও ছবিসমূহ</h2>
+            <p class="text-slate-500 text-xs sm:text-sm mt-1" data-bn="স্বয়ংক্রিয়ভাবে চলমান গ্যালারি প্রিভিউ" data-en="Automatically sliding live gallery preview">স্বয়ংক্রিয়ভাবে চলমান গ্যালারি প্রিভিউ</p>
         </div>
 
         @if(isset($posts) && $posts->count() > 0)
@@ -217,7 +226,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Language Toggle & Fully Functional AJAX Pagination -->
+    <!-- JavaScript for Language Toggle, JS Attraction Card Animation & AJAX Pagination -->
     <script>
         function switchLanguage(lang) {
             const htmlTag = document.getElementById('html-root');
@@ -258,83 +267,58 @@
             if (savedLang === 'en') {
                 switchLanguage('en');
             }
-            syncPaginationButtons();
+
+            // JavaScript Dynamic Mouse-Tracking Glow Effect for Attraction Card
+            document.addEventListener('mousemove', (e) => {
+                const cards = document.querySelectorAll('.attraction-card');
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    let glow = card.querySelector('.card-glow');
+                    if (!glow) {
+                        glow = document.createElement('div');
+                        glow.className = 'card-glow';
+                        card.appendChild(glow);
+                    }
+                    glow.style.left = `${x}px`;
+                    glow.style.top = `${y}px`;
+                });
+            });
         });
 
-        function scrollGrid(containerId, direction) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            const scrollAmount = 300;
-            if (direction === 'left') {
-                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            } else {
-                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            }
-        }
-
-        function syncPaginationButtons() {
-            const prevLink = document.querySelector('#visa-success-container .pagination-links a[rel="prev"], #visa-success-container nav a:first-child');
-            const nextLink = document.querySelector('#visa-success-container .pagination-links a[rel="next"], #visa-success-container nav a:last-child');
-            
-            const topNav = document.getElementById('top-pagination-nav');
-            if (!topNav) return;
-
-            let html = '';
-            html += `<button onclick="triggerPageAction('prev')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition cursor-pointer flex items-center justify-center">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-            </button>`;
-            html += `<button onclick="triggerPageAction('next')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition cursor-pointer flex items-center justify-center">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-            </button>`;
-            topNav.innerHTML = html;
-        }
-
-        function triggerPageAction(action) {
-            let targetLink = null;
-            if (action === 'prev') {
-                targetLink = document.querySelector('#visa-success-container .pagination-links a[rel="prev"], #visa-success-container nav a:first-child');
-            } else {
-                targetLink = document.querySelector('#visa-success-container .pagination-links a[rel="next"], #visa-success-container nav a:last-child');
-            }
-            if (targetLink && targetLink.href) {
-                fetchVisaPage(targetLink.href);
-            }
-        }
-
-        function fetchVisaPage(url) {
-            let container = document.getElementById('visa-success-container');
-            container.style.opacity = '0.4';
-
-            fetch(url, {
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
-            })
-            .then(res => res.text())
-            .then(html => {
-                let parser = new DOMParser();
-                let doc = parser.parseFromString(html, 'text/html');
-                let newContent = doc.getElementById('visa-success-container').innerHTML;
-                
-                container.innerHTML = newContent;
-                container.style.opacity = '1';
-                
-                const currentLang = document.getElementById('html-root').getAttribute('lang') || 'bn';
-                if (currentLang === 'en') {
-                    switchLanguage('en');
-                }
-                syncPaginationButtons();
-                document.getElementById('success-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            })
-            .catch(err => {
-                console.error(err);
-                container.style.opacity = '1';
-            });
-        }
-
+        // AJAX Pagination handler
         document.addEventListener('click', function(e) {
             let paginationLink = e.target.closest('#visa-success-container nav a, #visa-success-container .pagination-links a');
             if (paginationLink && paginationLink.href) {
                 e.preventDefault();
-                fetchVisaPage(paginationLink.href);
+                let url = paginationLink.href;
+                let container = document.getElementById('visa-success-container');
+                container.style.opacity = '0.4';
+
+                fetch(url, {
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                })
+                .then(res => res.text())
+                .then(html => {
+                    let parser = new DOMParser();
+                    let doc = parser.parseFromString(html, 'text/html');
+                    let newContent = doc.getElementById('visa-success-container').innerHTML;
+                    
+                    container.innerHTML = newContent;
+                    container.style.opacity = '1';
+                    
+                    const currentLang = document.getElementById('html-root').getAttribute('lang') || 'bn';
+                    if (currentLang === 'en') {
+                        switchLanguage('en');
+                    }
+                    document.getElementById('success-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                })
+                .catch(err => {
+                    console.error(err);
+                    container.style.opacity = '1';
+                });
             }
         });
     </script>
