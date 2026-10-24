@@ -57,7 +57,6 @@
     <!-- Navbar -->
     <header class="bg-white/90 backdrop-blur-md border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 h-20 sm:h-24 flex items-center justify-between">
-            <!-- Logo Section -->
             <div class="flex items-center gap-2">
                 <a href="#" class="flex items-center">
                     <img src="{{ asset('Images/hello-apply.png') }}" alt="Hello Apply Logo" class="h-16 sm:h-20 md:h-28 w-auto object-contain" style="image-rendering: -webkit-optimize-contrast;">
@@ -102,21 +101,17 @@
         </div>
     </section>
 
-    <!-- 1. Visa Success Section (Hybrid: 2-Row Grid, Auto-slide timer + Manual Navigation Buttons) -->
-    <section id="success-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto overflow-hidden">
+    <!-- 1. Visa Success Section (Clean 6-Card Grid: Promo + 5 Visa Cards per page) -->
+    <section id="success-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 sm:mb-14 px-2 gap-4">
             <div>
                 <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-emerald-200" data-bn="ভিসা অ্যাপ্রুভাল রেকর্ড" data-en="Visa Approval Records">ভিসা অ্যাপ্রুভাল রেকর্ড</span>
                 <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-3" data-bn="সম্প্রতি প্রাপ্ত সফল ভিসাসমূহ" data-en="Recently Approved Visas">সম্প্রতি প্রাপ্ত সফল ভিসাসমূহ</h2>
             </div>
-            <!-- Manual Navigation Buttons -->
-            <div class="flex items-center gap-3">
-                <button onclick="scrollGrid('visa-grid-container', 'left')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition cursor-pointer">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                </button>
-                <button onclick="scrollGrid('visa-grid-container', 'right')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition cursor-pointer">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-                </button>
+            
+            <!-- Centered Header Navigation Buttons (Functional AJAX Pagination triggers) -->
+            <div id="top-pagination-nav" class="flex items-center gap-3">
+                <!-- Buttons will be synced with pagination links -->
             </div>
         </div>
 
@@ -179,7 +174,6 @@
                         </div>
                     @endforeach
 
-                    <!-- Duplicate items for seamless loop -->
                     @foreach($posts as $post)
                         <div class="w-[240px] sm:w-[280px] flex-shrink-0 bg-white rounded-3xl border border-slate-200/85 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group">
                             <div class="relative bg-slate-950 aspect-[3/4] flex items-center justify-center overflow-hidden">
@@ -225,7 +219,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Language Toggle, Auto-Slide Timer + Manual Scroll & AJAX Pagination -->
+    <!-- JavaScript for Language Toggle, Functional AJAX Pagination & Sync -->
     <script>
         function switchLanguage(lang) {
             const htmlTag = document.getElementById('html-root');
@@ -266,26 +260,13 @@
             if (savedLang === 'en') {
                 switchLanguage('en');
             }
-
-            // AUTO-SLIDE TIMER FOR VISA GRID (Every 2 seconds)
-            const visaGrid = document.getElementById('visa-grid-container');
-            if (visaGrid) {
-                let visaInterval = setInterval(() => {
-                    if (visaGrid.scrollLeft + visaGrid.clientWidth >= visaGrid.scrollWidth - 10) {
-                        visaGrid.scrollTo({ left: 0, behavior: 'smooth' });
-                    } else {
-                        visaGrid.scrollBy({ left: 360, behavior: 'smooth' });
-                    }
-                }, 2500);
-
-                visaGrid.addEventListener('mouseenter', () => clearInterval(visaInterval));
-            }
+            syncPaginationButtons();
         });
 
         function scrollGrid(containerId, direction) {
             const container = document.getElementById(containerId);
             if (!container) return;
-            const scrollAmount = 360;
+            const scrollAmount = 300;
             if (direction === 'left') {
                 container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
             } else {
@@ -293,42 +274,74 @@
             }
         }
 
-        // AJAX Pagination handler
+        function syncPaginationButtons() {
+            const prevLink = document.querySelector('#visa-success-container .pagination-links a[rel="prev"], #visa-success-container nav a:first-child');
+            const nextLink = document.querySelector('#visa-success-container .pagination-links a[rel="next"], #visa-success-container nav a:last-child');
+            
+            const topNav = document.getElementById('top-pagination-nav');
+            if (!topNav) return;
+
+            let html = '';
+            // If prev exists
+            if (document.querySelector('#visa-success-container .pagination-links span[aria-disabled="true"]') || prevLink) {
+                // We build clean top arrows
+                html += `<button onclick="triggerPageAction('prev')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition cursor-pointer flex items-center justify-center">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                </button>`;
+            }
+            html += `<button onclick="triggerPageAction('next')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition cursor-pointer flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </button>`;
+            topNav.innerHTML = html;
+        }
+
+        function triggerPageAction(action) {
+            let targetLink = null;
+            if (action === 'prev') {
+                targetLink = document.querySelector('#visa-success-container .pagination-links a[rel="prev"], #visa-success-container nav a:first-child');
+            } else {
+                targetLink = document.querySelector('#visa-success-container .pagination-links a[rel="next"], #visa-success-container nav a:last-child');
+            }
+            if (targetLink && targetLink.href) {
+                fetchVisaPage(targetLink.href);
+            }
+        }
+
+        function fetchVisaPage(url) {
+            let container = document.getElementById('visa-success-container');
+            container.style.opacity = '0.4';
+
+            fetch(url, {
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(res => res.text())
+            .then(html => {
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(html, 'text/html');
+                let newContent = doc.getElementById('visa-success-container').innerHTML;
+                
+                container.innerHTML = newContent;
+                container.style.opacity = '1';
+                
+                const currentLang = document.getElementById('html-root').getAttribute('lang') || 'bn';
+                if (currentLang === 'en') {
+                    switchLanguage('en');
+                }
+                syncPaginationButtons();
+                document.getElementById('success-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            })
+            .catch(err => {
+                console.error(err);
+                container.style.opacity = '1';
+            });
+        }
+
+        // AJAX Pagination handler for clicked links inside pagination
         document.addEventListener('click', function(e) {
             let paginationLink = e.target.closest('#visa-success-container nav a, #visa-success-container .pagination-links a');
-            
-            if (paginationLink) {
+            if (paginationLink && paginationLink.href) {
                 e.preventDefault();
-                let url = paginationLink.href;
-                
-                let container = document.getElementById('visa-success-container');
-                container.style.opacity = '0.4';
-
-                fetch(url, {
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                })
-                .then(response => response.text())
-                .then(html => {
-                    let parser = new DOMParser();
-                    let doc = parser.parseFromString(html, 'text/html');
-                    let newContent = doc.getElementById('visa-success-container').innerHTML;
-                    
-                    container.innerHTML = newContent;
-                    container.style.opacity = '1';
-                    
-                    const currentLang = document.getElementById('html-root').getAttribute('lang') || 'bn';
-                    if (currentLang === 'en') {
-                        switchLanguage('en');
-                    }
-
-                    document.getElementById('success-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    container.style.opacity = '1';
-                });
+                fetchVisaPage(paginationLink.href);
             }
         });
     </script>

@@ -1,5 +1,5 @@
 @if(isset($visaSuccesses) && $visaSuccesses->count() > 0)
-    <!-- Large prominent Visa Success Cards Grid (PC: 3 columns, Mobile: 1-2 columns) -->
+    <!-- Prominent Large Visa Success Grid (Exactly 6 cards per page: 1 Promo + 5 Visa Cards) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         
         <!-- 1. SPECIAL PROMO FIRST CARD -->
@@ -22,8 +22,8 @@
             </a>
         </div>
 
-        <!-- 2. DYNAMIC LARGE VISA SUCCESS CARDS -->
-        @foreach($visaSuccesses as $visa)
+        <!-- 2. DYNAMIC LARGE VISA SUCCESS CARDS (Taking up to 5 items to keep total 6 cards per page) -->
+        @foreach($visaSuccesses->take(5) as $visa)
             <div class="bg-white rounded-3xl border-2 border-emerald-500/20 shadow-xl shadow-emerald-950/5 hover:shadow-2xl hover:border-emerald-500/50 transition-all duration-300 overflow-hidden flex flex-col group relative">
                 <!-- Glowing Emerald Accent Top Bar -->
                 <div class="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600"></div>
@@ -82,7 +82,7 @@
         @endforeach
     </div>
 
-    <!-- Pagination -->
+    <!-- Pagination & Bottom Nav -->
     @if(method_exists($visaSuccesses, 'links'))
         <div class="mt-10 sm:mt-14 flex justify-center overflow-x-auto py-2">
             <div class="inline-flex rounded-xl shadow-sm bg-white border border-slate-200 p-1.5 gap-1 pagination-links">
