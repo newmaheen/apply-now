@@ -22,40 +22,48 @@
             </a>
         </div>
 
-        <!-- 2. DYNAMIC VISA SUCCESS CARDS (Up to 5 items to complete total 6 cards in PC view grid) -->
+        <!-- 2. MIND-BLOWING PREMIUM VISA SUCCESS CARDS -->
         @foreach($visaSuccesses->take(5) as $visa)
-            <div class="bg-white rounded-2xl sm:rounded-3xl border border-emerald-100/80 shadow-md sm:shadow-xl hover:shadow-2xl hover:border-emerald-500/40 transition-all duration-300 overflow-hidden flex flex-col group relative">
+            <div class="bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-3xl border-2 border-emerald-500/20 shadow-xl shadow-emerald-950/5 hover:shadow-2xl hover:border-emerald-500/60 transition-all duration-300 overflow-hidden flex flex-col group relative">
                 <!-- Glowing Emerald Accent Top Bar -->
-                <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600"></div>
 
-                <!-- Landscape Image Box (Perfect Auto Fit) -->
-                <div class="relative bg-slate-900 aspect-[16/10] w-full flex items-center justify-center overflow-hidden">
-                    <img src="{{ asset('storage/' . $visa->image_path) }}" alt="Visa Record" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <span class="absolute top-2 right-2 sm:top-3 sm:right-3 bg-emerald-600 text-white text-[9px] sm:text-[11px] font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg border border-emerald-400/30">Approved ✓</span>
+                <!-- Landscape Image Box with Glossy Container -->
+                <div class="relative bg-slate-950 aspect-[16/10] w-full flex items-center justify-center overflow-hidden border-b border-emerald-100">
+                    <img src="{{ asset('storage/' . $visa->image_path) }}" alt="Visa Record" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    
+                    <!-- Premium Approved Badge -->
+                    <div class="absolute top-2 right-2 sm:top-3 sm:right-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-[9px] sm:text-[11px] font-black px-3 py-1 rounded-full shadow-2xl border border-emerald-300/40 flex items-center gap-1 animate-pulse">
+                        <span>✓</span> Approved
+                    </div>
                 </div>
                 
-                <!-- Details -->
-                <div class="p-3 sm:p-6 flex-1 flex flex-col justify-between bg-white">
+                <!-- Details Body -->
+                <div class="p-3.5 sm:p-6 flex-1 flex flex-col justify-between bg-gradient-to-b from-white via-emerald-50/20 to-white">
                     <div>
-                        <h3 class="font-bold text-slate-900 text-xs sm:text-base mb-2 sm:mb-3 leading-snug line-clamp-2">{{ $visa->title ?? 'Indian Visa Approved' }}</h3>
-                        <div class="space-y-1 text-[10px] sm:text-xs text-slate-600 mb-3 sm:mb-4 bg-emerald-50/50 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-emerald-100/60">
+                        <h3 class="font-extrabold text-slate-900 text-xs sm:text-base mb-2 sm:mb-3 leading-snug line-clamp-2 group-hover:text-emerald-800 transition-colors">
+                            {{ $visa->title ?? 'Indian Visa Approved' }}
+                        </h3>
+                        
+                        <div class="space-y-1.5 text-[10px] sm:text-xs text-slate-700 mb-3 sm:mb-5 bg-white p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border border-emerald-500/15 shadow-inner">
                             @if($visa->route)
                                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-0.5 sm:gap-2">
-                                    <span class="text-slate-500 shrink-0 font-medium" data-bn="অনুমোদিত রুট:" data-en="Approved Route:">অনুমোদিত রুট:</span>
-                                    <strong class="text-emerald-900 sm:text-right truncate">{{ $visa->route }}</strong>
+                                    <span class="text-slate-400 font-semibold shrink-0" data-bn="অনুমোদিত রুট:" data-en="Approved Route:">অনুমোদিত রুট:</span>
+                                    <strong class="text-emerald-950 sm:text-right truncate font-bold">{{ $visa->route }}</strong>
                                 </div>
                             @endif
                             @if($visa->issue_date)
-                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center">
-                                    <span class="text-slate-500 font-medium" data-bn="তারিখ:" data-en="Date:">তারিখ:</span>
-                                    <span class="font-semibold text-slate-700">{{ $visa->issue_date->format('d M, Y') }}</span>
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center border-t border-slate-100 pt-1">
+                                    <span class="text-slate-400 font-semibold" data-bn="তারিখ:" data-en="Date:">তারিখ:</span>
+                                    <span class="font-bold text-slate-800">{{ $visa->issue_date->format('d M, Y') }}</span>
                                 </div>
                             @endif
                         </div>
                     </div>
                     
+                    <!-- Action Button -->
                     <a href="https://wa.me/8801619891494?text=Ami%20India%20Visa%20korbo" target="_blank" 
-                       class="w-full flex items-center justify-center gap-1.5 bg-gradient-to-r from-slate-900 to-emerald-950 hover:from-emerald-600 hover:to-emerald-700 text-white text-[10px] sm:text-xs font-bold py-2 sm:py-2.5 px-2 sm:px-4 rounded-xl transition-all shadow-md">
+                       class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 hover:from-emerald-600 hover:to-teal-600 text-white text-[10px] sm:text-xs font-extrabold py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl transition-all shadow-lg shadow-emerald-950/20">
                         <span data-bn="ইনকোয়ারি করুন" data-en="Inquire Now">ইনকোয়ারি করুন</span> &rarr;
                     </a>
                 </div>

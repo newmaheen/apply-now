@@ -15,7 +15,7 @@
 
         @keyframes glowing-badge {
             0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            70% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
             100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
         .animate-glow { animation: glowing-badge 2s infinite; }
@@ -100,7 +100,7 @@
         </div>
     </section>
 
-    <!-- 2. Portrait Posts Carousel Section (Auto-scrolling + Manual buttons) -->
+    <!-- 2. Portrait Posts Section (Auto-scrolling + Manual buttons) -->
     <section id="posts-section" class="py-14 sm:py-20 px-4 max-w-7xl mx-auto bg-slate-100/60 rounded-3xl my-8 sm:my-12 border border-slate-200/50">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 sm:mb-10 px-2 gap-4">
             <div>
@@ -166,7 +166,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Language Toggle, Auto-Carousel & AJAX Pagination -->
+    <!-- JavaScript for Language Toggle, Auto-Scrolling Posts & AJAX Pagination -->
     <script>
         function switchLanguage(lang) {
             const htmlTag = document.getElementById('html-root');
@@ -208,18 +208,25 @@
                 switchLanguage('en');
             }
 
-            // AUTO-SCROLLING FOR POSTS CAROUSEL
+            // ROBUST AUTO-SCROLLING FOR POSTS CAROUSEL
             const carousel = document.getElementById('posts-carousel');
             if (carousel) {
-                let autoScrollInterval = setInterval(() => {
-                    if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10) {
-                        carousel.scrollTo({ left: 0, behavior: 'smooth' });
-                    } else {
-                        carousel.scrollBy({ left: 300, behavior: 'smooth' });
-                    }
-                }, 3500);
+                let scrollSpeed = 1; // pixels per step
+                let isPaused = false;
 
-                carousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+                carousel.addEventListener('mouseenter', () => isPaused = true);
+                carousel.addEventListener('mouseleave', () => isPaused = false);
+                carousel.addEventListener('touchstart', () => isPaused = true, {passive: true});
+
+                setInterval(() => {
+                    if (!isPaused) {
+                        if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 5) {
+                            carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                        } else {
+                            carousel.scrollBy({ left: 280, behavior: 'smooth' });
+                        }
+                    }
+                }, 3000);
             }
         });
 
