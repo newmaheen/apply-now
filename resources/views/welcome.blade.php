@@ -20,7 +20,7 @@
         }
         .animate-glow { animation: glowing-badge 2s infinite; }
 
-        /* Butter-smooth Infinite Marquee Animation for Posts */
+        /* Butter-smooth Infinite Marquee Animation for Visa & Posts */
         @keyframes smoothScroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -103,12 +103,22 @@
         </div>
     </section>
 
-    <!-- 1. Visa Success Section -->
-    <section id="success-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto">
-        <div class="text-center mb-12 sm:mb-16">
-            <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-emerald-200" data-bn="ভিসা অ্যাপ্রুভাল রেকর্ড" data-en="Visa Approval Records">ভিসা অ্যাপ্রুভাল রেকর্ড</span>
-            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-3" data-bn="সম্প্রতি প্রাপ্ত সফল ভিসাসমূহ" data-en="Recently Approved Visas">সম্প্রতি প্রাপ্ত সফল ভিসাসমূহ</h2>
-            <p class="text-slate-500 mt-2 sm:mt-3 text-xs sm:text-base max-w-xl mx-auto" data-bn="আমাদের মাধ্যমে সফলভাবে ভিসা প্রাপ্ত সম্মানিত গ্রাহকদের কিছু রেকর্ড" data-en="Some records of our honored clients who successfully received visas through us">আমাদের মাধ্যমে সফলভাবে ভিসা প্রাপ্ত সম্মানিত গ্রাহকদের কিছু রেকর্ড</p>
+    <!-- 1. Visa Success Section (Smooth Marquee Auto-sliding) -->
+    <section id="success-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto overflow-hidden">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 sm:mb-14 px-2 gap-4">
+            <div>
+                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-emerald-200" data-bn="ভিসা অ্যাপ্রুভাল রেকর্ড" data-en="Visa Approval Records">ভিসা অ্যাপ্রুভাল রেকর্ড</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-3" data-bn="সম্প্রতি প্রাপ্ত সফল ভিসাসমূহ" data-en="Recently Approved Visas">সম্প্রতি প্রাপ্ত সফল ভিসাসমূহ</h2>
+            </div>
+            <!-- Manual Navigation Buttons -->
+            <div class="flex items-center gap-3">
+                <button onclick="scrollSection('visa-carousel', 'left')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button onclick="scrollSection('visa-carousel', 'right')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-emerald-600 hover:text-white transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
         </div>
 
         <div id="visa-success-container">
@@ -118,22 +128,30 @@
 
     <!-- 2. Portrait Posts Section (Butter-Smooth Infinite Marquee Animation) -->
     <section id="posts-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto bg-slate-100/70 rounded-[2.5rem] my-8 sm:my-16 border border-slate-200/60 shadow-inner overflow-hidden relative">
-        <div class="text-center mb-12">
-            <span class="bg-orange-500/10 text-orange-600 border border-orange-500/20 text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-wider" data-bn="বিশেষ গ্যালারি ও আপডেট" data-en="Special Gallery & Updates">
-                বিশেষ গ্যালারি ও আপডেট
-            </span>
-            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3" data-bn="আমাদের পোর্ট্রেইট পোস্ট ও ছবিসমূহ" data-en="Our Portrait Posts & Photos">আমাদের পোর্ট্রেইট পোস্ট ও ছবিসমূহ</h2>
-            <p class="text-slate-500 text-xs sm:text-sm mt-1" data-bn="স্বয়ংক্রিয়ভাবে চলমান গ্যালারি প্রিভিউ" data-en="Automatically sliding live gallery preview">স্বয়ংক্রিয়ভাবে চলমান গ্যালারি প্রিভিউ</p>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 sm:mb-14 px-2 gap-4">
+            <div>
+                <span class="bg-orange-500/10 text-orange-600 border border-orange-500/20 text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-wider" data-bn="বিশেষ গ্যালারি ও আপডেট" data-en="Special Gallery & Updates">
+                    বিশেষ গ্যালারি ও আপডেট
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3" data-bn="আমাদের পোর্ট্রেইট পোস্ট ও ছবিসমূহ" data-en="Our Portrait Posts & Photos">আমাদের পোর্ট্রেইট পোস্ট ও ছবিসমূহ</h2>
+            </div>
+            <!-- Manual Navigation Buttons -->
+            <div class="flex items-center gap-3">
+                <button onclick="scrollSection('posts-carousel', 'left')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-orange-600 hover:text-white transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button onclick="scrollSection('posts-carousel', 'right')" class="p-3 rounded-full bg-white border border-slate-200 shadow-md hover:bg-orange-600 hover:text-white transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
         </div>
 
         @if(isset($posts) && $posts->count() > 0)
-            <!-- Infinite Marquee Container -->
             <div class="w-full overflow-hidden relative py-4">
-                <!-- Left & Right Gradient Fade Masks -->
                 <div class="absolute left-0 inset-y-0 w-16 bg-gradient-to-r from-slate-100/90 to-transparent z-10 pointer-events-none"></div>
                 <div class="absolute right-0 inset-y-0 w-16 bg-gradient-to-l from-slate-100/90 to-transparent z-10 pointer-events-none"></div>
 
-                <div class="animate-marquee flex gap-6">
+                <div id="posts-carousel" class="animate-marquee flex gap-6">
                     @foreach($posts as $post)
                         <div class="w-[240px] sm:w-[280px] flex-shrink-0 bg-white rounded-3xl border border-slate-200/85 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group">
                             <div class="relative bg-slate-950 aspect-[3/4] flex items-center justify-center overflow-hidden">
@@ -209,7 +227,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Language Toggle & AJAX Pagination -->
+    <!-- JavaScript for Language Toggle, Manual Scroll & AJAX Pagination -->
     <script>
         function switchLanguage(lang) {
             const htmlTag = document.getElementById('html-root');
@@ -251,6 +269,17 @@
                 switchLanguage('en');
             }
         });
+
+        function scrollSection(containerId, direction) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const scrollAmount = 320;
+            if (direction === 'left') {
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
 
         // AJAX Pagination handler
         document.addEventListener('click', function(e) {
