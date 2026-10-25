@@ -120,7 +120,7 @@
         </div>
     </section>
 
-    <!-- 1. Visa Success Section (Realtime AJAX Pagination Fixed) -->
+    <!-- 1. Visa Success Section -->
     <section id="success-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto">
         <div class="text-center mb-12 sm:mb-16">
             <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-emerald-200" data-bn="ভিসা অ্যাপ্রুভাল রেকর্ড" data-en="Visa Approval Records">ভিসা অ্যাপ্রুভাল রেকর্ড</span>
@@ -215,45 +215,57 @@
         @endif
     </section>
 
-    <!-- Footer with Phone Number & Social Media Links -->
-    <footer class="bg-slate-950 text-slate-400 py-12 sm:py-16 border-t border-slate-900 text-xs">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
-            
-            <!-- Brand / Logo -->
-            <div class="flex flex-col items-center md:items-start gap-3">
-                <img src="{{ asset('Images/hello-apply.png') }}" alt="Hello Apply Logo" class="h-12 sm:h-16 w-auto object-contain brightness-0 invert">
-                <p class="text-slate-400 text-xs" data-bn="আপনার বিশ্বস্ত ইন্ডিয়ান ভিসা প্রসেসিং পার্টনার।" data-en="Your trusted Indian visa processing partner.">আপনার বিশ্বস্ত ইন্ডিয়ান ভিসা প্রসেসিং পার্টনার।</p>
-            </div>
+    <!-- Jakjomok & Prominent Footer with Facebook & WhatsApp -->
+    <footer class="bg-gradient-to-b from-slate-950 via-slate-900 to-emerald-950 text-slate-300 pt-16 pb-8 border-t-2 border-emerald-500/30 text-xs relative overflow-hidden">
+        <div class="absolute -left-20 -top-20 w-60 h-60 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -right-20 -bottom-20 w-60 h-60 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-            <!-- Contact & Phone Number -->
-            <div class="flex flex-col items-center gap-2">
-                <h4 class="text-white font-bold text-sm mb-1" data-bn="যোগাযোগ ও হটলাইন" data-en="Contact & Hotline">যোগাযোগ ও হটলাইন</h4>
-                <p class="flex items-center gap-2 text-slate-300">
-                    <span>📞 হটলাইন/হোয়াটসঅ্যাপ:</span> 
-                    <strong class="text-emerald-400 font-bold">+880 1848-317583</strong>
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10 items-center text-center md:text-left relative z-10">
+            
+            <!-- Brand Info -->
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <img src="{{ asset('Images/hello-apply.png') }}" alt="Hello Apply Logo" class="h-16 w-auto object-contain brightness-0 invert filter drop-shadow-md">
+                <p class="text-slate-400 text-xs leading-relaxed max-w-sm" data-bn="আপনার বিশ্বস্ত ইন্ডিয়ান ভিসা প্রসেসিং পার্টনার। শতভাগ নির্ভুল ও দ্রুত সেবা প্রদানই আমাদের লক্ষ্য।" data-en="Your trusted Indian visa processing partner. 100% accurate and fast service is our goal.">
+                    আপনার বিশ্বস্ত ইন্ডিয়ান ভিসা প্রসেসিং পার্টনার। শতভাগ নির্ভুল ও দ্রুত সেবা প্রদানই আমাদের লক্ষ্য।
                 </p>
             </div>
 
-            <!-- Social Media Links -->
+            <!-- Prominent Contact & WhatsApp -->
+            <div class="flex flex-col items-center gap-3 bg-slate-800/60 p-6 rounded-2xl border border-emerald-500/30 shadow-xl backdrop-blur-sm">
+                <span class="bg-emerald-500/20 text-emerald-400 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-widest border border-emerald-500/30">
+                    💬 সরাসরি যোগাযোগ
+                </span>
+                <p class="text-slate-300 font-semibold text-sm">হটলাইন / হোয়াটসঅ্যাপ সাপোর্ট:</p>
+                <a href="https://wa.me/8801848317583?text=Hello%20HelloApply,%20India%20Visa%20samporke%20jante%20cai" target="_blank" 
+                   class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-sm px-5 py-2.5 rounded-xl shadow-lg shadow-emerald-600/30 transition transform hover:scale-105">
+                    <span>📱 +880 1848-317583</span>
+                </a>
+            </div>
+
+            <!-- Prominent Social Media Links -->
             <div class="flex flex-col items-center md:items-end gap-3">
-                <h4 class="text-white font-bold text-sm" data-bn="সোশ্যাল মিডিয়া" data-en="Social Media">সোশ্যাল মিডিয়া</h4>
+                <h4 class="text-white font-bold text-sm tracking-wider uppercase mb-1" data-bn="আমাদের সোশ্যাল মিডিয়া" data-en="Our Social Media">আমাদের সোশ্যাল মিডিয়া</h4>
                 <div class="flex items-center gap-3">
-                    <!-- WhatsApp -->
-                    <a href="https://wa.me/8801848317583" target="_blank" class="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold hover:bg-emerald-700 transition shadow" title="WhatsApp">WA</a>
-                    <!-- Facebook -->
-                    <a href="https://facebook.com" target="_blank" class="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold hover:bg-blue-700 transition shadow" title="Facebook">FB</a>
-                    <!-- YouTube -->
-                    <a href="https://youtube.com" target="_blank" class="w-9 h-9 rounded-full bg-red-600 text-white flex items-center justify-center font-bold hover:bg-red-700 transition shadow" title="YouTube">YT</a>
+                    <!-- Facebook Page Link -->
+                    <a href="https://www.facebook.com/helloapplybd" target="_blank" 
+                       class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2.5 rounded-xl transition shadow-lg shadow-blue-600/30 transform hover:-translate-y-1">
+                        <span class="text-sm">🌐</span> Facebook Page
+                    </a>
+                    <!-- WhatsApp Direct Chat Link -->
+                    <a href="https://wa.me/8801848317583" target="_blank" 
+                       class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl transition shadow-lg shadow-emerald-600/30 transform hover:-translate-y-1">
+                        <span class="text-sm">💬</span> WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-4 border-t border-slate-900 mt-8 pt-6 text-center">
+        <div class="max-w-7xl mx-auto px-4 border-t border-slate-800/80 mt-12 pt-6 text-center text-slate-500 text-xs relative z-10">
             <p>&copy; {{ date('Y') }} Hello Apply. <span data-bn="সর্বস্বত্ব সংরক্ষিত।" data-en="All rights reserved.">সর্বস্বত্ব সংরক্ষিত।</span></p>
         </div>
     </footer>
 
-    <!-- JavaScript for Language Toggle, Attraction Card Glow & Working AJAX Pagination -->
+    <!-- JavaScript for Language Toggle, Attraction Card Glow & AJAX Pagination -->
     <script>
         function switchLanguage(lang) {
             const htmlTag = document.getElementById('html-root');
@@ -314,7 +326,7 @@
             });
         });
 
-        // Fully working AJAX Pagination without page reload
+        // Working AJAX Pagination without page reload
         document.addEventListener('click', function(e) {
             let paginationLink = e.target.closest('#visa-success-container nav a, #visa-success-container .pagination a');
             if (paginationLink && paginationLink.href) {
@@ -349,7 +361,7 @@
                 .catch(err => {
                     console.error(err);
                     container.style.opacity = '1';
-                    window.location.href = url; // Fallback to normal navigation if fetch fails
+                    window.location.href = url;
                 });
             }
         });
