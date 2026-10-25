@@ -33,7 +33,6 @@
             animation-play-state: paused;
         }
 
-        /* JS Animated Attraction Card Glow Effect */
         .attraction-card {
             position: relative;
             overflow: hidden;
@@ -63,11 +62,10 @@
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="hidden sm:flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span data-bn="হটলাইন ও ২৪/৭ হোয়াটসঅ্যাপ সাপোর্ট" data-en="Hotline & 24/7 WhatsApp Support">হটলাইন ও ২৪/৭ হোয়াটসঅ্যাপ সাপোর্ট</span>: <strong class="text-white">+880 1619-891494</strong>
+                <span data-bn="হটলাইন ও ২৪/৭ হোয়াটসঅ্যাপ সাপোর্ট" data-en="Hotline & 24/7 WhatsApp Support">হটলাইন ও ২৪/৭ হোয়াটসঅ্যাপ সাপোর্ট</span>: <strong class="text-white">+880 1848-317583</strong>
             </div>
             <div class="flex items-center justify-between w-full sm:w-auto">
                 <span class="sm:hidden text-[11px] text-emerald-400 font-bold">Hello Apply Visa Portal</span>
-                <!-- Bangla / English Toggle Switcher -->
                 <div class="inline-flex items-center bg-slate-800 p-0.5 rounded-full border border-slate-700 shadow-inner">
                     <button onclick="switchLanguage('bn')" id="lang-btn-bn" class="px-3 py-1 rounded-full text-[11px] font-bold transition-all bg-emerald-600 text-white shadow">বাং</button>
                     <button onclick="switchLanguage('en')" id="lang-btn-en" class="px-3 py-1 rounded-full text-[11px] font-bold transition-all text-slate-400 hover:text-white">ENG</button>
@@ -88,7 +86,7 @@
                 <a href="#success-section" class="hover:text-emerald-600 transition" data-bn="সফল ভিসাসমূহ" data-en="Visa Success">সফল ভিসাসমূহ</a>
                 <a href="#posts-section" class="hover:text-emerald-600 transition" data-bn="বিশেষ পোস্ট ও আপডেট" data-en="Updates & Gallery">বিশেষ পোস্ট ও আপডেট</a>
             </nav>
-            <a href="https://wa.me/8801619891494?text=Hello%20Apply,%20India%20Visa%20samporke%20jante%20cai" target="_blank" 
+            <a href="https://wa.me/8801848317583?text=Hello%20Apply,%20India%20Visa%20samporke%20jante%20cai" target="_blank" 
                class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl transition-all shadow-lg shadow-emerald-600/20">
                 <span data-bn="সরাসরি ইনকোয়ারি" data-en="Direct Inquiry">সরাসরি ইনকোয়ারি</span>
             </a>
@@ -99,7 +97,6 @@
     <section class="relative bg-gradient-to-br from-slate-950 via-emerald-950 to-slate-900 text-white py-20 sm:py-28 px-4 overflow-hidden border-b border-emerald-900/40">
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-900/20 via-transparent to-transparent pointer-events-none"></div>
         <div class="max-w-4xl mx-auto text-center relative z-10">
-            
             <div class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600/90 to-teal-600/90 text-white border border-emerald-400/40 text-[11px] sm:text-sm px-5 py-2.5 rounded-full font-bold uppercase tracking-wider mb-6 sm:mb-8 shadow-2xl animate-glow backdrop-blur-md">
                 <span>🏆</span> 
                 <span data-bn="১০ বছরের ভারতীয় ভিসা প্রসেসিং সফল অভিজ্ঞতা!" data-en="10 Years of Proven Indian Visa Processing Experience!">১০ বছরের ভারতীয় ভিসা প্রসেসিং সফল অভিজ্ঞতা!</span>
@@ -116,14 +113,14 @@
                 <a href="#success-section" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-3.5 rounded-xl border border-white/20 transition text-sm backdrop-blur-sm shadow-lg" data-bn="আমাদের সাকসেস দেখুন" data-en="View Success Stories">
                     আমাদের সাকসেস দেখুন
                 </a>
-                <a href="https://wa.me/8801619891494?text=India%20Visa%20Application%20korbo" target="_blank" class="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold px-8 py-3.5 rounded-xl shadow-xl shadow-orange-500/20 transition text-sm">
+                <a href="https://wa.me/8801848317583?text=India%20Visa%20Application%20korbo" target="_blank" class="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold px-8 py-3.5 rounded-xl shadow-xl shadow-orange-500/20 transition text-sm">
                     ভিসার জন্য আবেদন করুন
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- 1. Visa Success Section (Centered Headers) -->
+    <!-- 1. Visa Success Section -->
     <section id="success-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto">
         <div class="text-center mb-12 sm:mb-16">
             <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-emerald-200" data-bn="ভিসা অ্যাপ্রুভাল রেকর্ড" data-en="Visa Approval Records">ভিসা অ্যাপ্রুভাল রেকর্ড</span>
@@ -136,7 +133,7 @@
         </div>
     </section>
 
-    <!-- 2. Portrait Posts Section (Centered Headers) -->
+    <!-- 2. Portrait Posts Section (Mobile: 2 items per row, Desktop: Flex marquee) -->
     <section id="posts-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto bg-slate-100/70 rounded-[2.5rem] my-8 sm:my-16 border border-slate-200/60 shadow-inner overflow-hidden relative">
         <div class="text-center mb-12">
             <span class="bg-orange-500/10 text-orange-600 border border-orange-500/20 text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-wider" data-bn="বিশেষ গ্যালারি ও আপডেট" data-en="Special Gallery & Updates">
@@ -147,7 +144,39 @@
         </div>
 
         @if(isset($posts) && $posts->count() > 0)
-            <div class="w-full overflow-hidden relative py-4">
+            <!-- Mobile View: Grid 2 columns | Desktop View: Marquee slider -->
+            <!-- For Mobile: Grid layout with 2 items per row -->
+            <div class="grid grid-cols-2 md:hidden gap-3 px-1">
+                @foreach($posts as $post)
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-md overflow-hidden flex flex-col group">
+                        <div class="relative bg-slate-950 aspect-[3/4] flex items-center justify-center overflow-hidden">
+                            <img src="{{ asset('storage/' . $post->image_path) }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
+                            @if($post->category)
+                                <span class="absolute top-2 right-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow">
+                                    {{ $post->category }}
+                                </span>
+                            @endif
+                        </div>
+                        <div class="p-3 flex-1 flex flex-col justify-between bg-white">
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-xs mb-1 line-clamp-2">{{ $post->title }}</h3>
+                                <p class="text-[10px] text-slate-400">
+                                    {{ $post->created_at->format('d M, Y') }}
+                                </p>
+                            </div>
+                            <div class="mt-3 pt-2 border-t border-slate-100">
+                                <a href="https://wa.me/8801848317583?text=Hello%20HelloApply,%20ei%20update%20somporke%20jante%20cai" target="_blank" 
+                                   class="w-full flex items-center justify-center bg-slate-900 text-white text-[10px] font-bold py-2 rounded-lg">
+                                   <span data-bn="বিস্তারিত" data-en="More">বিস্তারিত</span> &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- Desktop Marquee View -->
+            <div class="hidden md:block w-full overflow-hidden relative py-4">
                 <div class="absolute left-0 inset-y-0 w-16 bg-gradient-to-r from-slate-100/90 to-transparent z-10 pointer-events-none"></div>
                 <div class="absolute right-0 inset-y-0 w-16 bg-gradient-to-l from-slate-100/90 to-transparent z-10 pointer-events-none"></div>
 
@@ -162,7 +191,6 @@
                                     </span>
                                 @endif
                             </div>
-                            
                             <div class="p-4 flex-1 flex flex-col justify-between bg-gradient-to-b from-white to-slate-50/50">
                                 <div>
                                     <h3 class="font-bold text-slate-900 text-xs sm:text-sm mb-2 leading-snug line-clamp-2">{{ $post->title }}</h3>
@@ -170,9 +198,8 @@
                                         <span class="date-label" data-bn="তারিখ:" data-en="Date:">তারিখ:</span> {{ $post->created_at->format('d M, Y') }}
                                     </p>
                                 </div>
-                                
                                 <div class="mt-4 pt-3 border-t border-slate-100">
-                                    <a href="https://wa.me/8801619891494?text=Hello%20HelloApply,%20ei%20update%20somporke%20jante%20cai" target="_blank" 
+                                    <a href="https://wa.me/8801848317583?text=Hello%20HelloApply,%20ei%20update%20somporke%20jante%20cai" target="_blank" 
                                        class="w-full flex items-center justify-center gap-1.5 bg-slate-900 hover:bg-orange-600 text-white text-[11px] font-bold py-2.5 px-3 rounded-xl transition shadow">
                                         <span data-bn="বিস্তারিত জানুন" data-en="Learn More">বিস্তারিত জানুন</span> &rarr;
                                     </a>
@@ -180,7 +207,6 @@
                             </div>
                         </div>
                     @endforeach
-
                     @foreach($posts as $post)
                         <div class="w-[240px] sm:w-[280px] flex-shrink-0 bg-white rounded-3xl border border-slate-200/85 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group">
                             <div class="relative bg-slate-950 aspect-[3/4] flex items-center justify-center overflow-hidden">
@@ -191,7 +217,6 @@
                                     </span>
                                 @endif
                             </div>
-                            
                             <div class="p-4 flex-1 flex flex-col justify-between bg-gradient-to-b from-white to-slate-50/50">
                                 <div>
                                     <h3 class="font-bold text-slate-900 text-xs sm:text-sm mb-2 leading-snug line-clamp-2">{{ $post->title }}</h3>
@@ -199,9 +224,8 @@
                                         <span class="date-label" data-bn="তারিখ:" data-en="Date:">তারিখ:</span> {{ $post->created_at->format('d M, Y') }}
                                     </p>
                                 </div>
-                                
                                 <div class="mt-4 pt-3 border-t border-slate-100">
-                                    <a href="https://wa.me/8801619891494?text=Hello%20HelloApply,%20ei%20update%20somporke%20jante%20cai" target="_blank" 
+                                    <a href="https://wa.me/8801848317583?text=Hello%20HelloApply,%20ei%20update%20somporke%20jante%20cai" target="_blank" 
                                        class="w-full flex items-center justify-center gap-1.5 bg-slate-900 hover:bg-orange-600 text-white text-[11px] font-bold py-2.5 px-3 rounded-xl transition shadow">
                                         <span data-bn="বিস্তারিত জানুন" data-en="Learn More">বিস্তারিত জানুন</span> &rarr;
                                     </a>
@@ -226,7 +250,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Language Toggle, JS Attraction Card Animation & AJAX Pagination -->
+    <!-- JavaScript -->
     <script>
         function switchLanguage(lang) {
             const htmlTag = document.getElementById('html-root');
@@ -268,7 +292,6 @@
                 switchLanguage('en');
             }
 
-            // JavaScript Dynamic Mouse-Tracking Glow Effect for Attraction Card
             document.addEventListener('mousemove', (e) => {
                 const cards = document.querySelectorAll('.attraction-card');
                 cards.forEach(card => {
