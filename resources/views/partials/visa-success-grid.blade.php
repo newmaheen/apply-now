@@ -65,7 +65,7 @@
         @endforeach
     </div>
 
-    <!-- Pagination -->
+    <!-- Standard Pagination (Without AJAX) -->
     @if(method_exists($visaSuccesses, 'links'))
         <div class="mt-8 sm:mt-14 flex justify-center overflow-x-auto py-2">
             <div class="inline-flex rounded-xl shadow-sm bg-white border border-slate-200 p-1.5 gap-1 pagination-links">

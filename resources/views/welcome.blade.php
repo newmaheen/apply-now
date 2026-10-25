@@ -27,7 +27,7 @@
         .animate-marquee {
             display: flex;
             width: max-content;
-            animation: smoothScroll 35s linear infinite;
+            animation: smoothScroll 30s linear infinite;
         }
         .animate-marquee:hover {
             animation-play-state: paused;
@@ -120,7 +120,7 @@
         </div>
     </section>
 
-    <!-- 1. Visa Success Section -->
+    <!-- 1. Visa Success Section (Standard Page Reload Pagination) -->
     <section id="success-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto">
         <div class="text-center mb-12 sm:mb-16">
             <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-emerald-200" data-bn="ভিসা অ্যাপ্রুভাল রেকর্ড" data-en="Visa Approval Records">ভিসা অ্যাপ্রুভাল রেকর্ড</span>
@@ -133,7 +133,7 @@
         </div>
     </section>
 
-    <!-- 2. Portrait Posts Section (Mobile: 2 items per row, Desktop: Flex marquee) -->
+    <!-- 2. Portrait Posts Section (Running Marquee for both Mobile & Desktop) -->
     <section id="posts-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto bg-slate-100/70 rounded-[2.5rem] my-8 sm:my-16 border border-slate-200/60 shadow-inner overflow-hidden relative">
         <div class="text-center mb-12">
             <span class="bg-orange-500/10 text-orange-600 border border-orange-500/20 text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-wider" data-bn="বিশেষ গ্যালারি ও আপডেট" data-en="Special Gallery & Updates">
@@ -144,45 +144,14 @@
         </div>
 
         @if(isset($posts) && $posts->count() > 0)
-            <!-- Mobile View: Grid 2 columns | Desktop View: Marquee slider -->
-            <!-- For Mobile: Grid layout with 2 items per row -->
-            <div class="grid grid-cols-2 md:hidden gap-3 px-1">
-                @foreach($posts as $post)
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-md overflow-hidden flex flex-col group">
-                        <div class="relative bg-slate-950 aspect-[3/4] flex items-center justify-center overflow-hidden">
-                            <img src="{{ asset('storage/' . $post->image_path) }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
-                            @if($post->category)
-                                <span class="absolute top-2 right-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow">
-                                    {{ $post->category }}
-                                </span>
-                            @endif
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col justify-between bg-white">
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-xs mb-1 line-clamp-2">{{ $post->title }}</h3>
-                                <p class="text-[10px] text-slate-400">
-                                    {{ $post->created_at->format('d M, Y') }}
-                                </p>
-                            </div>
-                            <div class="mt-3 pt-2 border-t border-slate-100">
-                                <a href="https://wa.me/8801848317583?text=Hello%20HelloApply,%20ei%20update%20somporke%20jante%20cai" target="_blank" 
-                                   class="w-full flex items-center justify-center bg-slate-900 text-white text-[10px] font-bold py-2 rounded-lg">
-                                   <span data-bn="বিস্তারিত" data-en="More">বিস্তারিত</span> &rarr;
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
-            <!-- Desktop Marquee View -->
-            <div class="hidden md:block w-full overflow-hidden relative py-4">
+            <div class="w-full overflow-hidden relative py-4">
                 <div class="absolute left-0 inset-y-0 w-16 bg-gradient-to-r from-slate-100/90 to-transparent z-10 pointer-events-none"></div>
                 <div class="absolute right-0 inset-y-0 w-16 bg-gradient-to-l from-slate-100/90 to-transparent z-10 pointer-events-none"></div>
 
-                <div id="posts-carousel" class="animate-marquee flex gap-6">
+                <!-- Running Marquee for Mobile & Desktop -->
+                <div id="posts-carousel" class="animate-marquee flex gap-4 sm:gap-6">
                     @foreach($posts as $post)
-                        <div class="w-[240px] sm:w-[280px] flex-shrink-0 bg-white rounded-3xl border border-slate-200/85 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group">
+                        <div class="w-[210px] sm:w-[280px] flex-shrink-0 bg-white rounded-3xl border border-slate-200/85 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group">
                             <div class="relative bg-slate-950 aspect-[3/4] flex items-center justify-center overflow-hidden">
                                 <img src="{{ asset('storage/' . $post->image_path) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                 @if($post->category)
@@ -191,13 +160,15 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="p-4 flex-1 flex flex-col justify-between bg-gradient-to-b from-white to-slate-50/50">
+                            
+                            <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between bg-gradient-to-b from-white to-slate-50/50">
                                 <div>
                                     <h3 class="font-bold text-slate-900 text-xs sm:text-sm mb-2 leading-snug line-clamp-2">{{ $post->title }}</h3>
                                     <p class="text-[10px] sm:text-[11px] text-slate-400 font-medium">
                                         <span class="date-label" data-bn="তারিখ:" data-en="Date:">তারিখ:</span> {{ $post->created_at->format('d M, Y') }}
                                     </p>
                                 </div>
+                                
                                 <div class="mt-4 pt-3 border-t border-slate-100">
                                     <a href="https://wa.me/8801848317583?text=Hello%20HelloApply,%20ei%20update%20somporke%20jante%20cai" target="_blank" 
                                        class="w-full flex items-center justify-center gap-1.5 bg-slate-900 hover:bg-orange-600 text-white text-[11px] font-bold py-2.5 px-3 rounded-xl transition shadow">
@@ -207,8 +178,10 @@
                             </div>
                         </div>
                     @endforeach
+
+                    <!-- Duplicate loop for seamless infinite marquee loop -->
                     @foreach($posts as $post)
-                        <div class="w-[240px] sm:w-[280px] flex-shrink-0 bg-white rounded-3xl border border-slate-200/85 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group">
+                        <div class="w-[210px] sm:w-[280px] flex-shrink-0 bg-white rounded-3xl border border-slate-200/85 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group">
                             <div class="relative bg-slate-950 aspect-[3/4] flex items-center justify-center overflow-hidden">
                                 <img src="{{ asset('storage/' . $post->image_path) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                 @if($post->category)
@@ -217,13 +190,15 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="p-4 flex-1 flex flex-col justify-between bg-gradient-to-b from-white to-slate-50/50">
+                            
+                            <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between bg-gradient-to-b from-white to-slate-50/50">
                                 <div>
                                     <h3 class="font-bold text-slate-900 text-xs sm:text-sm mb-2 leading-snug line-clamp-2">{{ $post->title }}</h3>
                                     <p class="text-[10px] sm:text-[11px] text-slate-400 font-medium">
                                         <span class="date-label" data-bn="তারিখ:" data-en="Date:">তারিখ:</span> {{ $post->created_at->format('d M, Y') }}
                                     </p>
                                 </div>
+                                
                                 <div class="mt-4 pt-3 border-t border-slate-100">
                                     <a href="https://wa.me/8801848317583?text=Hello%20HelloApply,%20ei%20update%20somporke%20jante%20cai" target="_blank" 
                                        class="w-full flex items-center justify-center gap-1.5 bg-slate-900 hover:bg-orange-600 text-white text-[11px] font-bold py-2.5 px-3 rounded-xl transition shadow">
@@ -250,7 +225,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- JavaScript for Language Toggle & Attraction Card Glow -->
     <script>
         function switchLanguage(lang) {
             const htmlTag = document.getElementById('html-root');
@@ -309,40 +284,6 @@
                     glow.style.top = `${y}px`;
                 });
             });
-        });
-
-        // AJAX Pagination handler
-        document.addEventListener('click', function(e) {
-            let paginationLink = e.target.closest('#visa-success-container nav a, #visa-success-container .pagination-links a');
-            if (paginationLink && paginationLink.href) {
-                e.preventDefault();
-                let url = paginationLink.href;
-                let container = document.getElementById('visa-success-container');
-                container.style.opacity = '0.4';
-
-                fetch(url, {
-                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
-                })
-                .then(res => res.text())
-                .then(html => {
-                    let parser = new DOMParser();
-                    let doc = parser.parseFromString(html, 'text/html');
-                    let newContent = doc.getElementById('visa-success-container').innerHTML;
-                    
-                    container.innerHTML = newContent;
-                    container.style.opacity = '1';
-                    
-                    const currentLang = document.getElementById('html-root').getAttribute('lang') || 'bn';
-                    if (currentLang === 'en') {
-                        switchLanguage('en');
-                    }
-                    document.getElementById('success-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                })
-                .catch(err => {
-                    console.error(err);
-                    container.style.opacity = '1';
-                });
-            }
         });
     </script>
 </body>
