@@ -120,7 +120,7 @@
         </div>
     </section>
 
-    <!-- 1. Visa Success Section (Standard Page Reload Pagination) -->
+    <!-- 1. Visa Success Section (Realtime AJAX Pagination Fixed) -->
     <section id="success-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto">
         <div class="text-center mb-12 sm:mb-16">
             <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-emerald-200" data-bn="ভিসা অ্যাপ্রুভাল রেকর্ড" data-en="Visa Approval Records">ভিসা অ্যাপ্রুভাল রেকর্ড</span>
@@ -133,7 +133,7 @@
         </div>
     </section>
 
-    <!-- 2. Portrait Posts Section (Running Marquee for both Mobile & Desktop) -->
+    <!-- 2. Portrait Posts Section -->
     <section id="posts-section" class="py-16 sm:py-24 px-4 max-w-7xl mx-auto bg-slate-100/70 rounded-[2.5rem] my-8 sm:my-16 border border-slate-200/60 shadow-inner overflow-hidden relative">
         <div class="text-center mb-12">
             <span class="bg-orange-500/10 text-orange-600 border border-orange-500/20 text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-wider" data-bn="বিশেষ গ্যালারি ও আপডেট" data-en="Special Gallery & Updates">
@@ -148,7 +148,6 @@
                 <div class="absolute left-0 inset-y-0 w-16 bg-gradient-to-r from-slate-100/90 to-transparent z-10 pointer-events-none"></div>
                 <div class="absolute right-0 inset-y-0 w-16 bg-gradient-to-l from-slate-100/90 to-transparent z-10 pointer-events-none"></div>
 
-                <!-- Running Marquee for Mobile & Desktop -->
                 <div id="posts-carousel" class="animate-marquee flex gap-4 sm:gap-6">
                     @foreach($posts as $post)
                         <div class="w-[210px] sm:w-[280px] flex-shrink-0 bg-white rounded-3xl border border-slate-200/85 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group">
@@ -179,7 +178,6 @@
                         </div>
                     @endforeach
 
-                    <!-- Duplicate loop for seamless infinite marquee loop -->
                     @foreach($posts as $post)
                         <div class="w-[210px] sm:w-[280px] flex-shrink-0 bg-white rounded-3xl border border-slate-200/85 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col group">
                             <div class="relative bg-slate-950 aspect-[3/4] flex items-center justify-center overflow-hidden">
@@ -217,15 +215,45 @@
         @endif
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-400 py-12 sm:py-16 border-t border-slate-900 text-center text-xs">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <img src="{{ asset('Images/hello-apply.png') }}" alt="Hello Apply Logo" class="h-12 sm:h-16 w-auto object-contain brightness-0 invert">
+    <!-- Footer with Phone Number & Social Media Links -->
+    <footer class="bg-slate-950 text-slate-400 py-12 sm:py-16 border-t border-slate-900 text-xs">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
+            
+            <!-- Brand / Logo -->
+            <div class="flex flex-col items-center md:items-start gap-3">
+                <img src="{{ asset('Images/hello-apply.png') }}" alt="Hello Apply Logo" class="h-12 sm:h-16 w-auto object-contain brightness-0 invert">
+                <p class="text-slate-400 text-xs" data-bn="আপনার বিশ্বস্ত ইন্ডিয়ান ভিসা প্রসেসিং পার্টনার।" data-en="Your trusted Indian visa processing partner.">আপনার বিশ্বস্ত ইন্ডিয়ান ভিসা প্রসেসিং পার্টনার।</p>
+            </div>
+
+            <!-- Contact & Phone Number -->
+            <div class="flex flex-col items-center gap-2">
+                <h4 class="text-white font-bold text-sm mb-1" data-bn="যোগাযোগ ও হটলাইন" data-en="Contact & Hotline">যোগাযোগ ও হটলাইন</h4>
+                <p class="flex items-center gap-2 text-slate-300">
+                    <span>📞 হটলাইন/হোয়াটসঅ্যাপ:</span> 
+                    <strong class="text-emerald-400 font-bold">+880 1848-317583</strong>
+                </p>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="flex flex-col items-center md:items-end gap-3">
+                <h4 class="text-white font-bold text-sm" data-bn="সোশ্যাল মিডিয়া" data-en="Social Media">সোশ্যাল মিডিয়া</h4>
+                <div class="flex items-center gap-3">
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/8801848317583" target="_blank" class="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold hover:bg-emerald-700 transition shadow" title="WhatsApp">WA</a>
+                    <!-- Facebook -->
+                    <a href="https://facebook.com" target="_blank" class="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold hover:bg-blue-700 transition shadow" title="Facebook">FB</a>
+                    <!-- YouTube -->
+                    <a href="https://youtube.com" target="_blank" class="w-9 h-9 rounded-full bg-red-600 text-white flex items-center justify-center font-bold hover:bg-red-700 transition shadow" title="YouTube">YT</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 border-t border-slate-900 mt-8 pt-6 text-center">
             <p>&copy; {{ date('Y') }} Hello Apply. <span data-bn="সর্বস্বত্ব সংরক্ষিত।" data-en="All rights reserved.">সর্বস্বত্ব সংরক্ষিত।</span></p>
         </div>
     </footer>
 
-    <!-- JavaScript for Language Toggle & Attraction Card Glow -->
+    <!-- JavaScript for Language Toggle, Attraction Card Glow & Working AJAX Pagination -->
     <script>
         function switchLanguage(lang) {
             const htmlTag = document.getElementById('html-root');
@@ -284,6 +312,46 @@
                     glow.style.top = `${y}px`;
                 });
             });
+        });
+
+        // Fully working AJAX Pagination without page reload
+        document.addEventListener('click', function(e) {
+            let paginationLink = e.target.closest('#visa-success-container nav a, #visa-success-container .pagination a');
+            if (paginationLink && paginationLink.href) {
+                e.preventDefault();
+                let url = paginationLink.href;
+                let container = document.getElementById('visa-success-container');
+                container.style.opacity = '0.4';
+
+                fetch(url, {
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                })
+                .then(res => res.text())
+                .then(html => {
+                    let parser = new DOMParser();
+                    let doc = parser.parseFromString(html, 'text/html');
+                    let newContent = doc.getElementById('visa-success-container');
+                    
+                    if (newContent) {
+                        container.innerHTML = newContent.innerHTML;
+                    } else {
+                        container.innerHTML = html;
+                    }
+                    
+                    container.style.opacity = '1';
+                    
+                    const currentLang = document.getElementById('html-root').getAttribute('lang') || 'bn';
+                    if (currentLang === 'en') {
+                        switchLanguage('en');
+                    }
+                    document.getElementById('success-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                })
+                .catch(err => {
+                    console.error(err);
+                    container.style.opacity = '1';
+                    window.location.href = url; // Fallback to normal navigation if fetch fails
+                });
+            }
         });
     </script>
 </body>
