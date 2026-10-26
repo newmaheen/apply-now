@@ -32,6 +32,12 @@
       "dest": "/api/index.php"
     }
   ],
+  "builds": [
+    {
+      "src": "api/index.php",
+      "use": "vercel-php@0.7.4"
+    }
+  ],
   "env": {
     "APP_ENV": "production",
     "APP_DEBUG": "true"
